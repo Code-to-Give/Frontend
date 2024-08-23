@@ -1,0 +1,149 @@
+/* Styling for the entire sign-up page */
+.signup-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Navbar styling similar to the landing page */
+  #navbar {
+    width: 100%;
+    background-color: #0d4a3e;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+  
+  #navbar-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  /* Container for content alignment */
+  .signup-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+  }
+  
+  /* Green box that connects the image and form */
+  .signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0f5e7; /* Soft green background */
+    padding: 30px;
+    border-radius: 10px;
+  }
+  
+  /* Signup image styling */
+  .signup-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .signup-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* Signup form box styling */
+  .signup-box {
+    flex: 1;
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 40px;
+  }
+  
+  .signup-box h1 {
+    color: #0d4a3e;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  /* Login section styling */
+  .loginLine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .login p {
+    margin: 0;
+    color: #0d4a3e;
+  }
+  
+  .router-link {
+    color: #0d4a3e;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  /* Input group styling */
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .details {
+    font-weight: bold;
+    color: #0d4a3e;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .input-group input,
+  .input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Register button styling */
+  .register {
+    width: 100%;
+    padding: 15px;
+    background-color: #0d4a3e;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .register:hover {
+    background-color: #094c37;
+  }
+  
+  /* Log In link styling */
+  .router-link {
+    font-size: 16px;
+    font-weight: bold;
+    color: #0d4a3e;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
