@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import './LoginPage.css';
+import Navbar from '../../components/Navbar/Navbar';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -17,11 +18,7 @@ function LoginPage() {
 
   return (
     <div className="login-page">
-      <div id="navbar">
-        <div id="navbar-left">
-          <Link to="/" className="navbar-logo">Food-Connections</Link>
-        </div>
-      </div>
+      <Navbar />
 
       <div className="login-content">
         <div className="login-box">

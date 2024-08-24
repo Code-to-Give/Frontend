@@ -8,27 +8,6 @@
     font-family: Arial, sans-serif;
   }
   
-  /* Navbar styling similar to the landing page */
-  #navbar {
-    width: 100%;
-    background-color: #0d4a3e;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-  }
-  
-  #navbar-left {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar-logo {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
   /* Container for content alignment */
   .signup-content {
     display: flex;

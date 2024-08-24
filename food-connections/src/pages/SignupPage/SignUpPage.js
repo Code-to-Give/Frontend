@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import './SignUpPage.css';
+import Navbar from '../../components/Navbar/Navbar';
 
 function SignUpPage() {
   const [companyName, setCompanyName] = useState('');
@@ -28,11 +29,7 @@ function SignUpPage() {
 
   return (
     <div className="signup-page">
-      <div id="navbar">
-        <div id="navbar-left">
-          <Link to="/" className="navbar-logo">Food-Connections</Link>
-        </div>
-      </div>
+      <Navbar />
 
       <div className="signup-content">
         <div className="signup-container">

@@ -1,28 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './LandingPage.css';
+import Navbar from '../../components/Navbar/Navbar';
 
 function LandingPage() {
   return (
-    <div>
-      <div id="navbar">
-        <div id="navbar-left">
-          <h1>Food-Connections</h1>
-        </div>
-        <div id="navbar-right">
-          <Link to="/login" className="nav-login-button">Log In</Link>
-          <Link to="/signup" className="nav-signup-button">Sign Up</Link>
-        </div>
-      </div>
-      <hr id="hr" />
-      <br /><br />
+    <div id="page">
+      <Navbar />
       <div style={{ display: 'flex' }} id="content">
         <div style={{ width: '50%' }}>
           <h1 className="top" style={{ marginBottom: 0 }}>Connecting Donors,</h1>
           <h1 className="top" style={{ marginTop: 0 }}>Feeding Communities</h1>
           <p id="describe">
-            Food-Connections is a platform designed to bridge the gap between food donors and beneficiaries in Singapore. 
-            We enable supermarkets, restaurants, and other organizations to donate surplus food directly to those in need, 
+            Designed to bridge the gap between food donors and beneficiaries in Singapore,
+            Enabled others to donate surplus food directly to those in need, 
             ensuring that no food goes to waste and every meal finds a plate.
           </p>
           <br /><br />
