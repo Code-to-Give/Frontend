@@ -45,7 +45,6 @@ function SignUpPage() {
     // Handle other sign-up logic here
 
     try {
-      // Prepare the data object to match the backend API expectations
       const data = {
         company_name: companyName,
         name: repName,
@@ -55,7 +54,6 @@ function SignUpPage() {
         role,
       };
 
-      // Call the register function and pass the data
       await register(data);
 
       if (role === "Donor") {
