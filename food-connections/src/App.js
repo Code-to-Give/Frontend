@@ -6,6 +6,7 @@ import SignUpPage from './pages/SignupPage/SignUpPage';
 import HomePage from './pages/HomePage/HomePage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import FormPage from './pages/FormPage/FormPage';
+import DonorApprovalPage from './pages/DonorApprovalPage/DonorApprovalPage';
 import './App.css';  // Optional for styling
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/donor-approval" element={<DonorApprovalPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/form" element={<FormPage />} />
