@@ -4,7 +4,7 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignUpPage from './pages/SignupPage/SignUpPage';
 import HomePage from './pages/HomePage/HomePage';
-import ProfilePage from './pages/ProfilePage/ProfilePage';
+import DonorProfilePage from './pages/ProfilePage/DonorProfilePage';
 import FormPage from './pages/FormPage/FormPage';
 import DonorApprovalPage from './pages/DonorApprovalPage/DonorApprovalPage';
 import './App.css';  // Optional for styling
@@ -18,7 +18,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/donor-approval" element={<DonorApprovalPage />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile" element={<DonorProfilePage />} />
         <Route path="/form" element={<FormPage />} />
       </Routes>
     </Router>

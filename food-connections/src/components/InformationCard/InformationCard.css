@@ -20,10 +20,12 @@
     position: absolute;
     left: 5%;
     top: 20%;
+    width: 250px;
+    height: 250px;
 }
 
 .info-container {
     position: absolute;
     left: 30%;
-    top: 40%;
+    top: 45%;
 }

@@ -1,0 +1,45 @@
+.body-container {
+    display: flex;
+}
+
+.body-block {
+    width: 50%;
+    margin: 5px;
+}
+
+.block-title {
+    background-color: #0D4A3E;
+    border-radius: 10px;
+    height: 70px;
+    color: white;
+    text-align: center;
+    line-height: 70px;
+}
+
+.block-content {
+    background-color: #F0F0F0;
+    border-radius: 10px;
+    height: 200px;
+    padding: 10px;
+    margin-top: -15px;
+}
+
+.status-button {
+    padding: 10px 280px;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-top: 12px;
+    margin-left: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+.status-accepted {
+    background-color: #4CAF50; /* Green for Accepted */
+    color: white;
+}
+
+.status-rejected {
+    background-color: #F44336; /* Red for Rejected */
+    color: white;
+}
