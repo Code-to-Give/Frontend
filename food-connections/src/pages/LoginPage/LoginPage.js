@@ -13,17 +13,13 @@ function LoginPage() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    // Handle login logic here (e.g., authentication)
     e.preventDefault();
 
     try {
-      // Call the login function and pass the email and password
       const response = await login({ email, password });
 
-      // Assuming the API returns a token or user data
       console.log("Login successful:", response);
 
-      // After successful login, navigate to the HomePage
       navigate("/home");
     } catch (err) {
       // Handle error
