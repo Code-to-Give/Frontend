@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignUpPage.css';
 import Navbar from '../../components/Navbar/Navbar';
+import Button from '../../components/Button/Button';
 
 function SignUpPage() {
   const [companyName, setCompanyName] = useState('');
@@ -107,7 +108,8 @@ function SignUpPage() {
                 <option value="beneficiary">Beneficiary</option>
               </select>
             </div>
-            <button className="register" onClick={handleSubmit}>Sign Up</button>
+            {/* <button className="register" onClick={handleSubmit}>Sign Up</button> */}
+            <Button text="Sign Up" onClick={handleSubmit} fullWidth /> 
           </div>
         </div>
       </div>
