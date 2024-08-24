@@ -12,6 +12,7 @@ function SignUpPage() {
   const [repEmail, setRepEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -57,8 +58,7 @@ function SignUpPage() {
       // Call the register function and pass the data
       await register(data);
 
-      // After successful registration, navigate to the HomePage
-      if (role === "donor") {
+      if (role === "Donor") {
         navigate("/donor-approval"); // Navigate to Donor Approval Page
       } else if (role === "beneficiary") {
         navigate("/home"); // Navigate to HomePage
