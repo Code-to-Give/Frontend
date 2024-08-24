@@ -1,12 +1,12 @@
 import React from "react";
-import "./HomePage.css";
+import "./BeneHomePage.css";
 import LoggedInNavbar from "../../components/LoggedInNavBar/LoggedInNavBar";
 import Piechart from "../../components/Piechart/Piechart";
 import Histogram from "../../components/Histogram/Histogram";
 import DonutChart from "../../components/DonutChart/DonutChart";
-import PendingDonations from "../../components/PendingDonations/PendingDonations";
+import BenePendingDonations from "../../components/PendingDonations/BenePendingDonations";
 
-function HomePage() {
+function BeneHomePage() {
   return (
     <div>
       <LoggedInNavbar />
@@ -37,7 +37,7 @@ function HomePage() {
             </div>
           </div>
           <div className="pending-donations">
-            <PendingDonations />
+            <BenePendingDonations />
           </div>
         </div>
       </div>
@@ -45,4 +45,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default BeneHomePage;

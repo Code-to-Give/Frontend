@@ -1,5 +1,5 @@
 import React from "react";
-import "./PendingDonations.css";
+import "./BenePendingDonations.css";
 
 const Button = ({ label, onClick, disabled, className }) => {
   return (
@@ -33,7 +33,7 @@ const DonationItem = ({ name, status, onAccept, onDecline }) => {
   );
 };
 
-const PendingDonations = () => {
+const BenePendingDonations = () => {
   const donations = [
     { name: "MBS", status: "onTheWay" },
     { name: "NUS", status: "pending" },
@@ -66,4 +66,4 @@ const PendingDonations = () => {
   );
 };
 
-export default PendingDonations;
+export default BenePendingDonations;

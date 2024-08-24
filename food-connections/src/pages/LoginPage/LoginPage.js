@@ -13,7 +13,7 @@ function LoginPage() {
   const handleSubmit = () => {
     // Handle login logic here (e.g., authentication)
     
-    // After login logic is handled, navigate to HomePage
+    // After login logic is handled, navigate to BeneHomePage or DonorHomePage
     navigate('/home');
   };
 

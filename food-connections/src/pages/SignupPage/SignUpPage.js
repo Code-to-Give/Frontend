@@ -26,7 +26,7 @@ function SignUpPage() {
     if (role === 'donor') {
       navigate('/donor-approval'); // Navigate to Donor Approval Page
     } else if (role === 'beneficiary') {
-      navigate('/home'); // Navigate to HomePage
+      navigate('/home'); // Navigate to BeneHomePage
     }
     // Handle other sign-up logic here
   };
