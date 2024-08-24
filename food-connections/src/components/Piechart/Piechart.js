@@ -47,7 +47,7 @@ function Piechart() {
         },
     };
 
-    return <Pie data={data} options={options} className='piechart'/>;
+    return <Pie data={data} options={options}/>;
 }
 
 export default Piechart;

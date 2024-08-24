@@ -54,7 +54,7 @@ const AgeHistogram = () => {
     },
   };
 
-  return <Bar data={data} options={options} className='histogram'/>;
+  return <Bar data={data} options={options}/>;
 };
 
 export default AgeHistogram;
