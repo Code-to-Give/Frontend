@@ -1,27 +1,34 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './SignUpPage.css';
-import Navbar from '../../components/Navbar/Navbar';
-import Button from '../../components/Button/Button';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import "./SignUpPage.css";
+import Navbar from "../../components/Navbar/Navbar";
+import { register } from "../../api/authApi";
+import Button from "../../components/Button/Button";
 
 function SignUpPage() {
-  const [companyName, setCompanyName] = useState('');
-  const [repName, setRepName] = useState('');
-  const [repPhone, setRepPhone] = useState('');
-  const [repEmail, setRepEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [companyName, setCompanyName] = useState("");
+  const [repName, setRepName] = useState("");
+  const [repPhone, setRepPhone] = useState("");
+  const [repEmail, setRepEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
 
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
-    // Uncomment the validation if you want to re-enable it
-    /*
-    if (!companyName || !repName || !repPhone || !repEmail || !password || !role) {
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+
+    if (
+      !companyName ||
+      !repName ||
+      !repPhone ||
+      !repEmail ||
+      !password ||
+      !role
+    ) {
       alert("Please fill in all the fields.");
       return;
     }
-    */
 
     // Check if the password length is at least 8 characters
     if (password.length < 8) {
@@ -29,12 +36,38 @@ function SignUpPage() {
       return;
     }
 
-    if (role === 'donor') {
-      navigate('/donor-approval'); // Navigate to Donor Approval Page
-    } else if (role === 'beneficiary') {
-      navigate('/home'); // Navigate to HomePage
+    if (role === "donor") {
+      navigate("/donor-approval"); // Navigate to Donor Approval Page
+    } else if (role === "beneficiary") {
+      navigate("/home"); // Navigate to HomePage
     }
     // Handle other sign-up logic here
+
+    try {
+      // Prepare the data object to match the backend API expectations
+      const data = {
+        company_name: companyName,
+        name: repName,
+        phone_number: repPhone,
+        email: repEmail,
+        password,
+        role,
+      };
+
+      // Call the register function and pass the data
+      await register(data);
+
+      // After successful registration, navigate to the HomePage
+      if (role === "donor") {
+        navigate("/donor-approval"); // Navigate to Donor Approval Page
+      } else if (role === "beneficiary") {
+        navigate("/home"); // Navigate to HomePage
+      }
+    } catch (err) {
+      // Handle error
+      console.error("Registration failed:", err);
+      setError("Registration failed. Please check your inputs and try again.");
+    }
   };
 
   return (
@@ -50,7 +83,9 @@ function SignUpPage() {
             <h1>Sign Up</h1>
             <div className="loginLine">
               <p>Have an account?</p>
-              <Link to="/login" className="router-link">Log In</Link>
+              <Link to="/login" className="router-link">
+                Log In
+              </Link>
             </div>
             <div className="input-group">
               <label className="details">Company Name:</label>
@@ -99,16 +134,16 @@ function SignUpPage() {
             </div>
             <div className="input-group">
               <label className="details">Role:</label>
-              <select
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-              >
-                <option value="" disabled>Donor/Beneficiary</option>
-                <option value="donor">Donor</option>
-                <option value="beneficiary">Beneficiary</option>
+              <select value={role} onChange={(e) => setRole(e.target.value)}>
+                <option value="" disabled>
+                  Donor/Beneficiary
+                </option>
+                <option value="Donor">Donor</option>
+                <option value="Beneficiary">Beneficiary</option>
               </select>
             </div>
-            <Button text="Sign Up" onClick={handleSubmit} fullWidth /> 
+            {error && <p className="error-message">{error}</p>}
+            <Button text="Sign Up" onClick={handleSubmit} fullWidth />
           </div>
         </div>
       </div>
