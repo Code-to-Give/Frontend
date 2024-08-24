@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import './SignUpPage.css';
 import Navbar from '../../components/Navbar/Navbar';
 
@@ -11,10 +11,10 @@ function SignUpPage() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
-    // Commented out the field validation
+    // Uncomment the validation if you want to re-enable it
     /*
     if (!companyName || !repName || !repPhone || !repEmail || !password || !role) {
       alert("Please fill in all the fields.");
@@ -22,9 +22,12 @@ function SignUpPage() {
     }
     */
 
-    // Redirect to HomePage after submission
-    navigate('/home'); // Update path to target HomePage
-    // Handle sign-up logic here
+    if (role === 'donor') {
+      navigate('/donor-approval'); // Navigate to Donor Approval Page
+    } else if (role === 'beneficiary') {
+      navigate('/home'); // Navigate to HomePage
+    }
+    // Handle other sign-up logic here
   };
 
   return (
