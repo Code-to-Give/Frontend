@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 import Navbar from '../../components/Navbar/Navbar';
+import Button from '../../components/Button/Button';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     // Handle login logic here (e.g., authentication)
     
     // After login logic is handled, navigate to HomePage
-    navigate('/home'); // Update path to target HomePage
+    navigate('/home');
   };
 
   return (
@@ -41,7 +42,7 @@ function LoginPage() {
               onChange={(e) => setPassword(e.target.value)} 
             />
           </div>
-          <button className="login" onClick={handleSubmit}>Log In</button>
+          <Button text="Log In" onClick={handleSubmit} fullWidth />  {/* Pass fullWidth prop here */}
           <div className="signup">
             <p>Don't have an account?</p>
             <Link to="/signup" className="router-link">Sign Up</Link>
