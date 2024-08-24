@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import LoginPage from './components/LoginPage';
-import SignUpPage from './components/SignUpPage';
-import HomePage from './components/HomePage';
-import ProfilePage from './components/ProfilePage';
-import FormPage from './components/FormPage';
+import LandingPage from './pages/LandingPage/LandingPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import SignUpPage from './pages/SignupPage/SignUpPage';
+import HomePage from './pages/HomePage/HomePage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import FormPage from './pages/FormPage/FormPage';
+import './App.css';  // Optional for styling
 
 function App() {
   return (
