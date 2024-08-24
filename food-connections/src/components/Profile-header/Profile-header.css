@@ -1,0 +1,38 @@
+.profile-info {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 50px;
+    gap: 10px;
+
+    & img {
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 50% !important;
+    }
+    & button {
+        background-color: #4E132F;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+
+.profile-container {
+    background-color: #4E132F;
+    width: 100%;
+    box-sizing: border-box;
+    color: white;
+    margin: 0;
+    display: flex;
+    font-family: Arial, sans-serif;
+    font-weight: lighter !important;
+    padding: 20px 50px;
+
+}
