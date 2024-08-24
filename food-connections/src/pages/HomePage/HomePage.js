@@ -1,14 +1,44 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import "./HomePage.css";
+import LoggedInNavbar from "../../components/LoggedInNavBar/LoggedInNavBar";
+import Piechart from "../../components/Piechart/Piechart";
+import Histogram from "../../components/Histogram/Histogram";
+import DonutChart from "../../components/DonutChart/DonutChart";
+import PendingDonations from "../../components/PendingDonations/PendingDonations";
 
 function HomePage() {
   return (
     <div>
-      <h1>Home Page</h1>
-      
-      <Link to="/"><button>Log-Out</button></Link>
-      <Link to="/profile"><button>Profile</button></Link>
-      <Link to="/form"><button>Form</button></Link>
+      <LoggedInNavbar />
+      <div className="dashboard-container">
+        <header className="dashboard-header">
+          <h1>Hello there, Company X</h1>
+        </header>
+        <div className="dashboard-content">
+          <div className="charts">
+            <div className="chart-item">
+              <h2>Gender</h2>
+              <Piechart />
+            </div>
+
+            <div className="chart-item">
+              <h2>Location</h2>
+              <DonutChart />
+            </div>
+
+            <div className="chart-item">
+              <h2>Age</h2>
+              <Histogram />
+            </div>
+
+            <div className="chart-item">
+              <h2>Organisation</h2>
+              <DonutChart />
+            </div>
+          </div>
+          <PendingDonations />
+        </div>
+      </div>
     </div>
   );
 }
