@@ -1,26 +1,28 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import InformationCard from '../../components/InformationCard/InformationCard';
 import './ProfilePage.css';
-import ProfileHeader from '../../components/Profile-header/Profile-header';
-import Piechart from '../../components/Piechart/Piechart';
-import AgeHistogram from '../../components/Histogram/Histogram';
 
 function ProfilePage() {
-
   return (
-    <div className='profile-screen'>
-      <ProfileHeader />
-      <div className="analytics-container">
-        <div className="analytics">
-          <Piechart />
-          <AgeHistogram />
+    <div>
+      <InformationCard company={"MBS"} name={"Marry"} email={"mbs@gmail.com"} phone={"12345678"} location={"Marina Bay"}/>
+      <div className="body-container">
+        <div className="body-block">
+          <h2 className="block-title">History</h2>
         </div>
+        <div className="body-block">
+          <h2 className="block-title">Food Request Details</h2>
+          <div className="block-content">
+            <p>Regularity: </p>
+            <p>Quantity: </p>
+            <p>Type: </p>
+          </div>
+        </div>
+        
       </div>
-
+      <Link to="/home"><button>Back to Home</button></Link>
     </div>
-
-    
-
   );
 }
 
