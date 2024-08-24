@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "./DonutChart.css";
@@ -26,6 +26,7 @@ const LocationDonutChart = () => {
     ],
   };
 
+  // added code to ensure the chart is responsive
   const options = {
     plugins: {
       legend: {
@@ -39,7 +40,22 @@ const LocationDonutChart = () => {
         size: 16,
       },
     },
+    maintainAspectRatio: false, 
+    responsive: true, 
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      // update the component if needed to ensure correct centering
+      window.dispatchEvent(new Event('resize'));
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className="chart-container">

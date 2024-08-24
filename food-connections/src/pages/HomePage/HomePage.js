@@ -36,7 +36,9 @@ function HomePage() {
               <DonutChart />
             </div>
           </div>
-          <PendingDonations />
+          <div className="pending-donations">
+            <PendingDonations />
+          </div>
         </div>
       </div>
     </div>
