@@ -35,7 +35,7 @@ function Piechart() {
         legend: {
             labels: {
             font: {
-                size: 50, // Adjust the font size for the labels
+                size: 20, // Adjust the font size for the labels
             },
             },
         },

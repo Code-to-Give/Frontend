@@ -1,3 +1,10 @@
+.analytics-container {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    align-items: start;
+}
+
 .analytics {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -5,7 +12,7 @@
     margin-top: 20px;
     & * {
         width: 365px !important;
-        height: 365px !important;
+        height: 315px !important;
     }
 }
 

@@ -10,12 +10,13 @@ function ProfilePage() {
   return (
     <div className='profile-screen'>
       <ProfileHeader />
-      <div className="analytics">
-        <Piechart />
-        <AgeHistogram />
-        <Piechart />
-        <Piechart />
+      <div className="analytics-container">
+        <div className="analytics">
+          <Piechart />
+          <AgeHistogram />
+        </div>
       </div>
+
     </div>
 
     
