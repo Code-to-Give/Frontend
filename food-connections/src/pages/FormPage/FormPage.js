@@ -36,17 +36,6 @@ function FormPage() {
           <div className="input-fields">
             <label className="details">Food Type:</label>
               <select
-                value={selectedFoodType}
-                onChange={(e) => {setSelectedFoodType(e.target.value);}}
-              >
-                <option  value="" disabled selected>Select the food type.</option>
-                <option  value="perishable">Perishable</option>
-                <option  value="non-perishable">Non-perishable</option>
-              </select>
-          </div>
-          <div className="input-fields">
-            <label className="details">Dietary Requirements:</label>
-              <select
                 value={selectedDietaryRequirements}
                 onChange={(e) => {setSelectedDietaryRequirements(e.target.value);}}
               >

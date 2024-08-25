@@ -41,21 +41,21 @@ const LocationDonutChart = () => {
       },
     },
     maintainAspectRatio: false, 
-    responsive: true, 
+    // responsive: true, 
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      // update the component if needed to ensure correct centering
-      window.dispatchEvent(new Event('resize'));
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     // update the component if needed to ensure correct centering
+  //     window.dispatchEvent(new Event('resize'));
+  //   };
 
-    window.addEventListener('resize', handleResize);
+  //   window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
 
   return (
     <div className="chart-container">
