@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './FormPage.css';
+import Map from "../../components/Map/Map";
 
 function FormPage() {
   const [location, setLocation] = useState("");
@@ -15,15 +15,6 @@ function FormPage() {
       <div className="form">
         <h1 className="form-title">Food Supply Form</h1>
         <div className="form-content">
-          <div className="input-fields">
-            <label className="details">Location:</label>
-              <input 
-                type="text" 
-                placeholder="Where is the food located?" 
-                value={location}
-                onChange={(e) => setLocation(e.target.value)} 
-              />
-          </div>
           <div className="input-fields">
             <label className="details">Quantity:</label>
               <input 
@@ -49,8 +40,8 @@ function FormPage() {
           <div className="input-fields">
             <label className="details">Expiry Time:</label>
               <input 
-                type="text" 
-                placeholder="When was the food cooked and how long will it last?" 
+                type="datetime" 
+                placeholder="Best to be consumed by:" 
                 value={expiryTime}
                 onChange={(e) => setExpiryTime(e.target.value)} 
               />
@@ -63,6 +54,10 @@ function FormPage() {
                 value={remark}
                 onChange={(e) => setRemark(e.target.value)} 
               />
+          </div>
+          <div className="input-fields">
+            <label className="details">Choose Your Location from the Map:</label>
+            <Map/>
           </div>
         </div>
         <button className="submit-button">Submit</button>
