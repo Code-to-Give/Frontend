@@ -21,44 +21,40 @@ function FormPage({onSubmit}) {
   const handleSubmit = async(e) => {
     e.preventDefault();
 
-    console.log("reached here");
+    // const formData = {
+    //   longitude,
+    //   latitude,
+    //   quantity,
+    //   remark,
+    //   expiryTime,
+    //   selectedDietaryRequirements,
+    // };
 
-    // Collect the form data
-    const formData = {
-      longitude,
-      latitude,
-      quantity,
-      remark,
-      expiryTime,
-      selectedDietaryRequirements,
-    };
+    // try {
+    //   const response = await fetch('http://localhost:8001/api/donations', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(formData),
+    //   });
 
-    try {
-      const response = await fetch('http://localhost:8001/api', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      // Handle the response
-      if (response.ok) {
-        alert('Form submitted successfully!');
-        // Clear the form after submission
-        setLatitude("");
-        setLongitude("");
-        setQuantity("");
-        setRemark("");
-        setExpiryTime("");
-        setSelectedDietaryRequirements("");
-      } else {
-        alert('Failed to submit the form. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error submitting the form:', error);
-      alert('An error occurred while submitting the form.');
-    }
+    //   // Handle the response
+    //   if (response.ok) {
+    //     alert('Form submitted successfully!');
+    //     setLatitude("");
+    //     setLongitude("");
+    //     setQuantity("");
+    //     setRemark("");
+    //     setExpiryTime("");
+    //     setSelectedDietaryRequirements("");
+    //   } else {
+    //     alert('Failed to submit the form. Please try again.');
+    //   }
+    // } catch (error) {
+    //   console.error('Error submitting the form:', error);
+    //   alert('An error occurred while submitting the form.');
+    // }
 
     if (onSubmit) {
       onSubmit();
