@@ -16,7 +16,9 @@ export const AuthProvider = ({ children }) => {
         return localStorage.getItem('accessToken') || '';
     });
 
-    
+    const [user, setUser] = useState(() => {
+        return localStorage.getItem('user') || {};
+    })    
 
 
 
@@ -25,17 +27,27 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('accessToken', newToken);
     };
 
+    const saveUser = (newUser) => {
+        setUser(newUser);
+        localStorage.setItem('user', newUser);
+    }
+
     const removeToken = () => {
         setToken('');
         localStorage.removeItem('accessToken');
     };
 
+    const removeUser = () => {
+        setUser({});
+        localStorage.removeItem('user');
+    }
+
     useEffect(() => {
         // Optional: Implement logic to refresh or validate the token here
-    }, [token]);
+    }, [token, user]);
 
     return (
-        <AuthContext.Provider value={{ token, saveToken, removeToken }}>
+        <AuthContext.Provider value={{ token, saveToken, removeToken, user, saveUser, removeUser }}>
             {children}
         </AuthContext.Provider>
     );
