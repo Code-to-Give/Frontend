@@ -5,14 +5,18 @@ import Piechart from "../../components/Piechart/Piechart";
 import Histogram from "../../components/Histogram/Histogram";
 import DonutChart from "../../components/DonutChart/DonutChart";
 import BenePendingDonations from "../../components/PendingDonations/BenePendingDonations";
+import { useAuth } from "../../utils/AuthContext";
 
 function BeneHomePage() {
+  
+  const { user } = useAuth();
+
   return (
     <div>
       <Navbar />
       <div className="dashboard-container">
         <header className="dashboard-header">
-          <h1>Hello there, Company X</h1>
+          <h1>Hello there, { JSON.parse(user).company_name}</h1>
         </header>
         <div className="dashboard-content">
           <div className="charts">

@@ -3,11 +3,9 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 
 // Create the context
 const AuthContext = createContext();
-const UserContext = createContext();
 
 // Create a custom hook to use the context
 export const useAuth = () => useContext(AuthContext);
-export const useUser = () => useContext(UserContext);
 
 // Create the provider component
 export const AuthProvider = ({ children }) => {
@@ -17,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     });
 
     const [user, setUser] = useState(() => {
-        return localStorage.getItem('user') || {};
+        return localStorage.getItem('user') || '';
     })    
 
 
@@ -38,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const removeUser = () => {
-        setUser({});
+        setUser('');
         localStorage.removeItem('user');
     }
 
