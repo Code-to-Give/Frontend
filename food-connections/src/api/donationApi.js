@@ -3,6 +3,13 @@ import axios from "axios";
 const API_BASE_URL = process.env.ALGO_API_URL || "http://localhost:8001/api";
 
 export const submitDonationForm = async (data) => {
+  // {
+  //     "food_type": "vegetarian",
+  //     "quantity": 2,
+  //     "location": [1.3521, 103.8198],
+  //     "status": "Ready",
+  //     "expiry_time": "2023-09-01T14:30:45.123456+00:00"
+  // }
   const accessToken = localStorage.getItem("accessToken");
 
   if (!accessToken) {
@@ -11,7 +18,7 @@ export const submitDonationForm = async (data) => {
 
   try {
     // Try to read donor information
-    const response = await axios.post(`${API_BASE_URL}/donations/me`, {
+    const response = await axios.post(`${API_BASE_URL}/donations/me`, data, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

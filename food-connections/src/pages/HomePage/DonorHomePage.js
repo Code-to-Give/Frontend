@@ -20,7 +20,6 @@ function DonorHomePage() {
   const toggleFormPopup = () => {
     setIsFormOpen(!isFormOpen);
   };
-  const [parsedUser, setParsedUser] = useState({});
 
   useEffect(() => {
     const fetchDonorData = async () => {
@@ -51,23 +50,22 @@ function DonorHomePage() {
     };
     fetchDonorData();
     fetchDonations();
-    setParsedUser(JSON.parse(user || '{"company_name": "Donor"}'));
   }, [user]);
 
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  //   if (!donorData) {
-  //     return <div>Loading...</div>;
-  //   }
+  if (!donorData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
       <Navbar />
       <div className="dashboard-container">
         <header className="dashboard-header">
-          <h1>Hello there, {parsedUser.company_name}</h1>
+          <h1>Hello there, {donorData.name ?? "Donor"}</h1>
           <button className="open-form-button" onClick={toggleFormPopup}>
             Food to donate?
           </button>
@@ -95,7 +93,7 @@ function DonorHomePage() {
             </div>
           </div>
           <div className="pending-donations">
-            <DonorPendingDonations />
+            <DonorPendingDonations donations={donations} />
           </div>
         </div>
       </div>
