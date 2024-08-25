@@ -40,12 +40,12 @@ function DonorHomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const donorData = await getDonorInformation();
-        if (donorData.error) {
-          setError(donorData.error);
+        const data = await getDonorInformation();
+        if (data.error) {
+          setError(data.error);
           return;
         } else {
-          setDonorData(donorData);
+          setDonorData(data);
         }
 
         const donationData = await getDonations();
@@ -69,10 +69,6 @@ function DonorHomePage() {
 
   if (error) {
     return <div>Error: {error}</div>;
-  }
-
-  if (!donorData) {
-    return <div>Loading...</div>;
   }
 
   return (
