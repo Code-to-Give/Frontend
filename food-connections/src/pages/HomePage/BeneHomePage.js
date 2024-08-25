@@ -56,7 +56,7 @@ function BeneHomePage() {
 
     fetchData();
 
-    const intervalId = setInterval(fetchDonations, 10000);
+    const intervalId = setInterval(fetchDonations, 20000); // 20 s
     return () => clearInterval(intervalId);
   }, []);
 
