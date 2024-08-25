@@ -114,7 +114,7 @@ const BenePendingDonations = ({ donations }) => {
 
   return (
     <div className="container">
-      <h2 className="title">Pending donations</h2>
+      <h2 className="title">Donations</h2>
       {donations.map((donation, index) => (
         <DonationItem
           key={index}

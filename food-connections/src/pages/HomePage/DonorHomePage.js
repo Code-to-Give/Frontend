@@ -64,7 +64,6 @@ function DonorHomePage() {
 
     const intervalId = setInterval(fetchDonations, 10000);
     return () => clearInterval(intervalId);
-
   }, []);
 
   if (error) {
@@ -117,7 +116,12 @@ function DonorHomePage() {
             <span className="close" onClick={toggleFormPopup}>
               &times;
             </span>
-            <FormPage onSubmit={toggleFormPopup}/>
+            <FormPage
+              onSubmit={() => {
+                fetchDonations();
+                toggleFormPopup();
+              }}
+            />
           </div>
         </div>
       )}
