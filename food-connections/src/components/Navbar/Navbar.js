@@ -8,7 +8,7 @@ function Navbar() {
   const [isLoggedIn, setisLoggedIn] = useState(localStorage.getItem("accessToken") !== null);
   useEffect(() => {
     setisLoggedIn(localStorage.getItem("accessToken") !== null);
-  } );
+  }, [] );
   const navigate = useNavigate();
 
   return (
@@ -33,8 +33,6 @@ function Navbar() {
                   localStorage.removeItem("accessToken"); // Log out by removing token
                   navigate('/');
                   window.location.reload(); // Refresh the page to update the navbar
-                  
-                  
                 }}
               >
                 Log-Out
