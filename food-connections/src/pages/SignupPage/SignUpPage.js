@@ -37,9 +37,9 @@ function SignUpPage() {
       return;
     }
 
-    if (role === "donor") {
+    if (role === "Donor") {
       navigate("/donor-approval"); // Navigate to Donor Approval Page
-    } else if (role === "beneficiary") {
+    } else if (role === "Beneficiary") {
       navigate("/home"); // Navigate to HomePage
     }
     // Handle other sign-up logic here
@@ -59,9 +59,8 @@ function SignUpPage() {
       if (role === "Donor") {
         navigate("/donor-approval");
       } else if (role === "Beneficiary") {
-          navigate("/home");
+        navigate("/home");
       }
-    
     } catch (err) {
       // Handle error
       console.error("Registration failed:", err);
@@ -69,8 +68,6 @@ function SignUpPage() {
       setError("Registration failed. Please check your inputs and try again.");
       // find out where the error is coming from
       console.log(error.response.data);
-
-
     }
   };
 
