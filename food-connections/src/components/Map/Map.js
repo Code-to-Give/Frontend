@@ -4,12 +4,10 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import icon from "./constants";
 
-const Map = (props) => {
+const Map = ({ onLocationSelect }) => {
   const DEFAULT_LATITUDE = 1.2838;
   const DEFAULT_LONGITUDE = 103.8591;
 
-  // State to store the center of the map and the clicked position for the marker
-  const [center, setCenter] = useState([DEFAULT_LATITUDE, DEFAULT_LONGITUDE]);
   const [markerPosition, setMarkerPosition] = useState(null); // Initially, no marker
 
   // Function to handle click event and update marker position
@@ -19,6 +17,10 @@ const Map = (props) => {
 
       // Update marker position state
       setMarkerPosition([lat, lng]);
+
+      if (onLocationSelect) {
+        onLocationSelect(lat, lng)
+      }
 
       // Show a popup with latitude and longitude at the clicked position
       const popup = L.popup()
