@@ -35,6 +35,14 @@ function LandingPage() {
               ensuring that you and your loved ones have access to nutritious meals.
             </p>
           </div>
+          <div className="info-section" id="volunteer-section">
+            <h2>For Volunteers</h2>
+            <p>
+            Empowering volunteers to connect food donors with those in need, facilitating the transportation of surplus 
+            food directly from generous donors to grateful beneficiaries. Our mission is to ensure that every donation is 
+            delivered with care and minimizing waste. Join us in making a tangible difference, one delivery at a time.
+            </p>
+          </div>
         </div>
       </div>
       <div id="banner-container">

@@ -93,13 +93,13 @@ body {
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-#donor-section h2, #beneficiary-section h2 {
+#donor-section h2, #beneficiary-section h2, #volunteer-section h2{
   font-size: 1.8rem;
   color: #0d4a3e;
   margin-bottom: 10px;
 }
 
-#donor-section p, #beneficiary-section p {
+#donor-section p, #beneficiary-section p, #volunteer-section p{
   font-size: 1rem;
   color: #333;
   line-height: 1.6;
