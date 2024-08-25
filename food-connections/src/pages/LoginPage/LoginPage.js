@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import Navbar from "../../components/Navbar/Navbar";
-import { login } from "../../api/authApi";
+import { getCurrentUser, login } from "../../api/authApi";
 import Button from "../../components/Button/Button";
 
 function LoginPage() {
@@ -18,9 +18,26 @@ function LoginPage() {
     try {
       const response = await login({ email, password });
 
-      console.log("Login successful:", response);
+      // use token to get user data
+      const user = await getCurrentUser();
+      console.log("User data:", user);
 
-      navigate("/home");
+      const userRole = user.role;
+      console.log(userRole);
+      if (userRole === "Donor") {
+        navigate("/donor-home");
+      } else if (userRole === "Beneficiary") {
+        navigate("/bene-home");
+      } else if (userRole === "Volunteer") {
+        navigate("/home");
+      } else {
+        console.error("Invalid user role:", userRole);
+        setError("Invalid user role. Please try again.");
+
+        // Log out user
+        localStorage.removeItem("accessToken");
+        navigate("/home");
+      }
     } catch (err) {
       // Handle error
       console.error("Login failed:", err);
