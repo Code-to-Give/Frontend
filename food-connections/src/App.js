@@ -23,8 +23,8 @@ function App() {
         <Route path="/bene-home" element={<BeneHomePage />} />
         <Route path="/donor-profile" element={<DonorProfilePage />} />
         <Route path="/bene-profile" element={<DonorProfilePage />} />
-        <Route path="/bene-home" element={<BeneHomePage />} />
-        <Route path="/bene-profile" element={<BeneProfilePage />} />
+        {/* <Route path="/bene-home" element={<BeneHomePage />} /> */}
+        {/* <Route path="/bene-profile" element={<BeneProfilePage />} /> */}
         <Route path="/form" element={<FormPage />} />
 
       </Routes>
