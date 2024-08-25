@@ -61,7 +61,7 @@ function DonorProfilePage() {
                     <p>{ceoName}</p>
                     <p>Email: {email}</p>
                     <p>Phone: {phone}</p>
-                    <p>Location: {location}</p>
+                    {/* <p>Location: {location}</p> */}
                 </div>
                 <button className="edit-profile-button" onClick={handleEditLocationOpen}>Edit Location</button>
             </div>
