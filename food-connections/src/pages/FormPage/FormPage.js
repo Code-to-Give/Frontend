@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './FormPage.css';
 import Map from "../../components/Map/Map";
+import { submitDonationForm } from "../../api/donationApi";
 
 function FormPage({onSubmit}) {
   const [longitude, setLongitude] = useState("");
@@ -21,44 +22,35 @@ function FormPage({onSubmit}) {
   const handleSubmit = async(e) => {
     e.preventDefault();
 
-    // const formData = {
-    //   longitude,
-    //   latitude,
-    //   quantity,
-    //   remark,
-    //   expiryTime,
-    //   selectedDietaryRequirements,
-    // };
+    const convertDatetimeToUTC = (expiryTime) => {
+      const date = new Date(expiryTime);
+      const utcDateTime = date.toISOString();
+      return utcDateTime;
+    };
 
-    // try {
-    //   const response = await fetch('http://localhost:8001/api/donations', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(formData),
-    //   });
+    const formData = {
+      food_type: selectedDietaryRequirements,
+      quantity: parseInt(quantity),
+      location: [parseFloat(latitude), parseFloat(longitude)],
+      status: "Ready",
+      expiry_time: convertDatetimeToUTC(expiryTime),
+    };
+  
+    console.log('Form Data:', formData);
 
-    //   // Handle the response
-    //   if (response.ok) {
-    //     alert('Form submitted successfully!');
-    //     setLatitude("");
-    //     setLongitude("");
-    //     setQuantity("");
-    //     setRemark("");
-    //     setExpiryTime("");
-    //     setSelectedDietaryRequirements("");
-    //   } else {
-    //     alert('Failed to submit the form. Please try again.');
-    //   }
-    // } catch (error) {
-    //   console.error('Error submitting the form:', error);
-    //   alert('An error occurred while submitting the form.');
-    // }
+    submitDonationForm(formData);
 
     if (onSubmit) {
+      console.log('Form submitted');
       onSubmit();
     }
+
+    setLatitude("");
+    setLongitude("");
+    setQuantity("");
+    setRemark("");
+    setExpiryTime("");
+    setSelectedDietaryRequirements("");
   };
 
   return (
@@ -90,12 +82,7 @@ function FormPage({onSubmit}) {
           </div>
           <div className="input-fields">
             <label className="details">Expiry Time:</label>
-              <input 
-                type="datetime" 
-                placeholder="Best to be consumed by:" 
-                value={expiryTime}
-                onChange={(e) => setExpiryTime(e.target.value)} 
-              />
+              <input aria-label="Date and time" type="datetime-local" value={expiryTime} onChange={(e) => setExpiryTime(e.target.value)}/>
           </div>
           <div className="input-fields">
             <label className="details">Any remarks for beneficiaries?</label>
