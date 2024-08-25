@@ -36,6 +36,9 @@ function DonorHomePage() {
         setParsedUser(JSON.parse(user || '{"company_name": "Donor"}'));
     }, [user])
 
+    fetchDonorData();
+  }, []);
+
   if (error) {
     return <div>Error: {error}</div>;
   }
