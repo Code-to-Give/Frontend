@@ -1,50 +1,67 @@
+/* General Styles */
 #navbar {
     display: flex;
-    width: 100%;
-    height: 90px !important;
-    min-height: 90px !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    background-color: rgba(13, 74, 62, 1);
-    color: white;
-}
-
-#navbar-left > .word {
-    margin: 15px;
-    font-family: sans-serif;
-    text-decoration: none;
-    color: white;
-    font-size: 24px;
-}
-
-#navbar-right {
-    display: flex;
-}
-
-.nav-login-button {
-    color: white;
-    padding: 20px 15px;
-    text-align: center;
-    text-decoration: none;
-    font-family: sans-serif;
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-}
-
-.nav-signup-button {
+    padding: 10px;
+  }
+  
+  /* Logged-out Styles */
+  .logged-out-navbar {
+    background-color: #28a745; /* Green background */
+  }
+  
+  .logged-out-word {
+    color: white;
+  }
+  
+  .logged-out-button {
+    color: #28a745;
     background-color: white;
-    color: rgba(13, 74, 62, 1);
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    font-family: sans-serif;
-    border-radius: 0;
-    margin: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border: none;
     border-radius: 5px;
-}
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  
+  .logged-out-button:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Logged-in Styles */
+  .logged-in-navbar {
+    background-color: white;
+  }
+  
+  .logged-in-word {
+    color: #333; /* Dark text */
+  }
+  
+  .logged-in-button {
+    color: white;
+    background-color: #28a745; /* Green buttons */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .logged-in-button:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  /* Other Shared Styles */
+  #navbar-left img#hamburger-image {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+  }
+  
+  .search-bar {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 15px;
+  }
+  

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link, useNavigate } from "react-router-dom";
 import "./SignUpPage.css";
 import Navbar from "../../components/Navbar/Navbar";
 import { register } from "../../api/authApi";
@@ -20,33 +20,31 @@ function SignUpPage() {
     e.preventDefault();
 
     if (
-      !companyName ||
-      !repName ||
-      !repPhone ||
       !repEmail ||
       !password ||
-      !role
+      !repName ||
+      !repPhone ||
+      !role ||
+      (role !== "Volunteer" && !companyName)
     ) {
       alert("Please fill in all the fields.");
       return;
     }
 
-    // Check if the password length is at least 8 characters
     if (password.length < 8) {
       alert("Password must be at least 8 characters long.");
       return;
     }
 
     if (role === "Donor") {
-      navigate("/donor-approval"); // Navigate to Donor Approval Page
-    } else if (role === "Beneficiary") {
-      navigate("/home"); // Navigate to HomePage
+      navigate("/donor-approval");
+    } else if (role === "Beneficiary" || role === "Volunteer") {
+      navigate("/home");
     }
-    // Handle other sign-up logic here
 
     try {
       const data = {
-        company_name: companyName,
+        company_name: role === "Volunteer" ? "" : companyName,
         name: repName,
         phone_number: repPhone,
         email: repEmail,
@@ -58,23 +56,19 @@ function SignUpPage() {
 
       if (role === "Donor") {
         navigate("/donor-approval");
-      } else if (role === "Beneficiary") {
+      } else if (role === "Beneficiary" || role === "Volunteer") {
         navigate("/home");
       }
     } catch (err) {
-      // Handle error
       console.error("Registration failed:", err);
-      // Show error message
       setError("Registration failed. Please check your inputs and try again.");
-      // find out where the error is coming from
-      console.log(error.response.data);
+      console.log(error.response?.data);
     }
   };
 
   return (
     <div className="signup-page">
       <Navbar />
-
       <div className="signup-content">
         <div className="signup-container">
           <div className="signup-image">
@@ -89,12 +83,21 @@ function SignUpPage() {
               </Link>
             </div>
             <div className="input-group">
-              <label className="details">Company Name:</label>
+              <label className="details">Representative's Work E-Mail:</label>
               <input
-                type="text"
-                placeholder="Company Name"
-                value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
+                type="email"
+                placeholder="Representative's Work E-Mail"
+                value={repEmail}
+                onChange={(e) => setRepEmail(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label className="details">Password:</label>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="input-group">
@@ -116,33 +119,30 @@ function SignUpPage() {
               />
             </div>
             <div className="input-group">
-              <label className="details">Representative's Work E-Mail:</label>
-              <input
-                type="email"
-                placeholder="Representative's Work E-Mail"
-                value={repEmail}
-                onChange={(e) => setRepEmail(e.target.value)}
-              />
-            </div>
-            <div className="input-group">
-              <label className="details">Password:</label>
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="input-group">
               <label className="details">Role:</label>
               <select value={role} onChange={(e) => setRole(e.target.value)}>
                 <option value="" disabled>
-                  Donor/Beneficiary
+                  Donor/Beneficiary/Volunteer
                 </option>
                 <option value="Donor">Donor</option>
                 <option value="Beneficiary">Beneficiary</option>
+                <option value="Volunteer">Volunteer</option>
               </select>
             </div>
+            {role !== "Volunteer" && (
+              <div className="input-group">
+                <label className="details">Company Name:</label>
+                <p className="subtext">
+                  If you are a volunteer, put your name in "Company Name" and "Name".
+                </p>
+                <input
+                  type="text"
+                  placeholder="Company Name"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                />
+              </div>
+            )}
             {error && <p className="error-message">{error}</p>}
             <Button text="Sign Up" onClick={handleSubmit} fullWidth />
           </div>

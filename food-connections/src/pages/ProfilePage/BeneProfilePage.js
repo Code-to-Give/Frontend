@@ -41,7 +41,7 @@ function BeneProfilePage() {
             <p>Tom</p>
             <p>Email: abchome@gmail.com</p>
             <p>Phone: 9123 4567</p>
-            <p>Location: Jurong East</p>
+            {/* <p>Location: Jurong East</p> */}
             <button className="edit-profile-button">Edit Profile</button>
           </div>
         </div>
