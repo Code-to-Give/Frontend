@@ -52,3 +52,55 @@ export const getDonations = async () => {
     throw error;
   }
 };
+
+export const acceptDonation = async (data) => {
+  const accessToken = localStorage.getItem("accessToken");
+
+  if (!accessToken) {
+    return { error: "No access token found. Please log in again." };
+  }
+
+  try {
+    // Try to read donor information
+    const response = await axios.post(
+      `${API_BASE_URL}/donations/${data.id}/accept`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error getting donations", error);
+    throw error;
+  }
+};
+
+export const rejectDonation = async (data) => {
+  const accessToken = localStorage.getItem("accessToken");
+
+  if (!accessToken) {
+    return { error: "No access token found. Please log in again." };
+  }
+
+  try {
+    // Try to read donor information
+    const response = await axios.post(
+      `${API_BASE_URL}/donations/${data.id}/reject`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error getting donations", error);
+    throw error;
+  }
+};
