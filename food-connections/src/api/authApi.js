@@ -48,7 +48,9 @@ export const register = async (data) => {
 };
 
 export const getCurrentUser = async () => {
-  const accessToken = localStorage.getItem("accessToken");
+  const token = localStorage.getItem("accessToken");
+  if (token === "" || !token) return null;
+  const accessToken = token ;
 
   try {
     const response = await axios.get(`${API_BASE_URL}/users/me`, {

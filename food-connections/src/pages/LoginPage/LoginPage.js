@@ -10,7 +10,7 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const { token, saveToken, removeToken } = useAuth();
+  const { removeToken } = useAuth();
 
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await login({ email, password });
+      await login({ email, password });
 
       // use token to get user data
       const user = await getCurrentUser();
@@ -35,9 +35,6 @@ function LoginPage() {
       } else {
         console.error("Invalid user role:", userRole);
         setError("Invalid user role. Please try again.");
-
-        // Log out user
-        // localStorage.removeItem("accessToken");
         removeToken();
         navigate("/home");
       }
