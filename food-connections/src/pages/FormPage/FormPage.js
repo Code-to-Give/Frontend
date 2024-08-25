@@ -1,29 +1,69 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './FormPage.css';
+import Map from "../../components/Map/Map";
 
 function FormPage() {
-  const [location, setLocation] = useState("");
+  const [longitude, setLongitude] = useState("");
+  const [latitude, setLatitude] = useState("");  
   const [quantity, setQuantity] = useState("");
   const [remark, setRemark] = useState("");
   const [expiryTime, setExpiryTime] = useState("");
-  const [selectedFoodType, setSelectedFoodType] = useState("");
   const [selectedDietaryRequirements, setSelectedDietaryRequirements] = useState("");
+
+  // Function to handle the location selection from the map
+  const handleLocation = (lat, lng) => {
+    console.log('Location selected:', lat, lng);
+    setLongitude(lng);
+    setLatitude(lat);
+  };
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Collect the form data
+    const formData = {
+      longitude,
+      latitude,
+      quantity,
+      remark,
+      expiryTime,
+      selectedDietaryRequirements,
+    };
+
+    try {
+      const response = await fetch('http://localhost:8001/api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      // Handle the response
+      if (response.ok) {
+        alert('Form submitted successfully!');
+        // Clear the form after submission
+        setLatitude("");
+        setLongitude("");
+        setQuantity("");
+        setRemark("");
+        setExpiryTime("");
+        setSelectedDietaryRequirements("");
+      } else {
+        alert('Failed to submit the form. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting the form:', error);
+      alert('An error occurred while submitting the form.');
+    }
+  };
 
   return (
     <div style={{ backgroundColor: "#D8BFD8", minHeight: "750px" }}>
       <div className="form">
         <h1 className="form-title">Food Supply Form</h1>
         <div className="form-content">
-          <div className="input-fields">
-            <label className="details">Location:</label>
-              <input 
-                type="text" 
-                placeholder="Where is the food located?" 
-                value={location}
-                onChange={(e) => setLocation(e.target.value)} 
-              />
-          </div>
           <div className="input-fields">
             <label className="details">Quantity:</label>
               <input 
@@ -49,8 +89,8 @@ function FormPage() {
           <div className="input-fields">
             <label className="details">Expiry Time:</label>
               <input 
-                type="text" 
-                placeholder="When was the food cooked and how long will it last?" 
+                type="datetime" 
+                placeholder="Best to be consumed by:" 
                 value={expiryTime}
                 onChange={(e) => setExpiryTime(e.target.value)} 
               />
@@ -64,8 +104,12 @@ function FormPage() {
                 onChange={(e) => setRemark(e.target.value)} 
               />
           </div>
+          <div className="input-fields">
+            <label className="details">Choose Your Location from the Map:</label>
+            <Map onLocationSelect={handleLocation}/>
+          </div>
         </div>
-        <button className="submit-button">Submit</button>
+        <button className="submit-button" onSubmit={handleSubmit}>Submit</button>
       </div>
     </div>
   );
