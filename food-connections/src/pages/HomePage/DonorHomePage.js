@@ -1,36 +1,40 @@
 import React, { useState, useEffect } from "react";
 import "./DonorHomePage.css";
 import Navbar from "../../components/Navbar/Navbar";
-import LoggedInNavbar from "../../components/LoggedInNavBar/LoggedInNavBar";
 import Piechart from "../../components/Piechart/Piechart";
 import Histogram from "../../components/Histogram/Histogram";
 import DonutChart from "../../components/DonutChart/DonutChart";
 import DonorPendingDonations from "../../components/PendingDonations/DonorPendingDonations";
 import FormPage from "../../pages/FormPage/FormPage";
 import { getDonorInformation } from "../../api/donorApi";
+import { useAuth } from "../../utils/AuthContext";
 
 function DonorHomePage() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [donorData, setDonorData] = useState(null);
-  const [error, setError] = useState(null);
-
+    const [error, setError] = useState(null);
+    const { user } = useAuth();
   const toggleFormPopup = () => {
     setIsFormOpen(!isFormOpen);
   };
-
-  useEffect(() => {
-    const fetchDonorData = async () => {
-      try {
-        const data = await getDonorInformation();
-        if (data.error) {
-          setError(data.error);
-        } else {
-          setDonorData(data);
-        }
-      } catch (err) {
-        setError("Failed to load donor information.");
-      }
-    };
+    const [parsedUser, setParsedUser] = useState({});
+    
+    useEffect(() => {
+        const fetchDonorData = async () => {
+            try {
+                const data = await getDonorInformation();
+                if (data.error) {
+                    setError(data.error);
+                } else {
+                    setDonorData(data);
+                }
+            } catch (err) {
+                setError("Failed to load donor information.");
+            }
+        };
+        fetchDonorData();
+        setParsedUser(JSON.parse(user || '{"company_name": "Donor"}'));
+    }, [user])
 
     fetchDonorData();
   }, []);
@@ -39,26 +43,26 @@ function DonorHomePage() {
     return <div>Error: {error}</div>;
   }
 
-  if (!donorData) {
-    return <div>Loading...</div>;
-  }
+//   if (!donorData) {
+//     return <div>Loading...</div>;
+//   }
 
-  return (
-    <div>
-      <Navbar />
-      <div className="dashboard-container">
-        <header className="dashboard-header">
-          <h1>Hello there, MBS</h1>
-          <button className="open-form-button" onClick={toggleFormPopup}>
-            Food to donate?
-          </button>
-        </header>
-        <div className="dashboard-content">
-          <div className="charts">
-            <div className="chart-item">
-              <h2>Gender</h2>
-              <Piechart />
-            </div>
+    return (
+        <div>
+            <Navbar />
+            <div className="dashboard-container">
+                <header className="dashboard-header">
+                    <h1>Hello there, { parsedUser.company_name }</h1>
+                    <button className="open-form-button" onClick={toggleFormPopup}>
+                        Food to donate?
+                    </button>
+                </header>
+                <div className="dashboard-content">
+                    <div className="charts">
+                        <div className="chart-item">
+                            <h2>Gender</h2>
+                            <Piechart />
+                        </div>
 
             <div className="chart-item">
               <h2>Location</h2>

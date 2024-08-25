@@ -10,8 +10,7 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const { saveToken, removeToken } = useAuth();
-
+  const { saveToken, removeToken, saveUser, removeUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -21,13 +20,14 @@ function LoginPage() {
       const data = await login({ email, password });
 
       saveToken(data?.access_token);
-      console.log("login data: ", data);
+      
 
       // use token to get user data
-      const user = await getCurrentUser();
-      console.log("User data:", user);
-
-      const userRole = user.role;
+      const curUser = await getCurrentUser();
+      const parsedUser = JSON.stringify(curUser);
+      saveUser(parsedUser);
+      console.log("User data:", curUser);
+      const userRole = curUser.role;
       console.log(userRole);
       if (userRole === "Donor") {
         navigate("/donor-home");
@@ -39,6 +39,7 @@ function LoginPage() {
         console.error("Invalid user role:", userRole);
         setError("Invalid user role. Please try again.");
         removeToken();
+        removeUser();
         navigate("/home");
       }
     } catch (err) {

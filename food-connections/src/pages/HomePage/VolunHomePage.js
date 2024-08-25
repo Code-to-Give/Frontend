@@ -1,15 +1,15 @@
 import React from "react";
 import "./VolunHomePage.css";
-import LoggedInNavbar from "../../components/LoggedInNavBar/LoggedInNavBar";
 import Piechart from "../../components/Piechart/Piechart";
 import Histogram from "../../components/Histogram/Histogram";
 import DonutChart from "../../components/DonutChart/DonutChart";
 import VolunteerNotif from "../../components/VolunteerNotif/VolunteerNotif";
+import Navbar from "../../components/Navbar/Navbar";
 
 function VolunHomePage() {
   return (
     <div>
-      <LoggedInNavbar />
+      <Navbar />
       <div className="dashboard-container">
         <header className="dashboard-header">
           <h1>Hello there, Volunteer X</h1>
