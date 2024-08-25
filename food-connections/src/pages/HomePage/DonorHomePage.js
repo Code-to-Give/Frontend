@@ -23,35 +23,30 @@ function DonorHomePage() {
   };
 
   useEffect(() => {
-    const fetchDonorData = async () => {
+    const fetchData = async () => {
       try {
-        const data = await getDonorInformation();
-        if (data.error) {
-          setError(data.error);
+        const donorData = await getDonorInformation();
+        if (donorData.error) {
+          setError(donorData.error);
+          return;
         } else {
-          setDonorData(data);
+          setDonorData(donorData);
+        }
+
+        const donationData = await getDonations();
+        if (donationData.error) {
+          setError(donationData.error);
+        } else {
+          setDonations(donationData);
+          console.log(donationData);
         }
       } catch (err) {
-        setError("Failed to load donor information.");
+        setError("An error occurred while fetching data.");
       }
     };
 
-    const fetchDonations = async () => {
-      try {
-        const data = await getDonations();
-        if (data.error) {
-          setError(data.error);
-        } else {
-          setDonations(data);
-          console.log(data);
-        }
-      } catch (err) {
-        setError("Failed to load donor information.");
-      }
-    };
-    fetchDonorData();
-    fetchDonations();
-  }, [user]);
+    fetchData();
+  }, []);
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -66,7 +61,7 @@ function DonorHomePage() {
       <Navbar />
       <div className="dashboard-container">
         <header className="dashboard-header">
-          <h1>Hello there, {donorData.name ?? "Donor"}</h1>
+          <h1>Hello there, {JSON.parse(user).company_name ?? "Donor"}</h1>
           <button className="open-form-button" onClick={toggleFormPopup}>
             Food to donate?
           </button>
@@ -107,7 +102,7 @@ function DonorHomePage() {
             <span className="close" onClick={toggleFormPopup}>
               &times;
             </span>
-            <FormPage onSubmit={toggleFormPopup}/>
+            <FormPage onSubmit={toggleFormPopup} />
           </div>
         </div>
       )}
