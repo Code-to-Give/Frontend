@@ -55,6 +55,9 @@ function BeneHomePage() {
     };
 
     fetchData();
+
+    const intervalId = setInterval(fetchDonations, 10000);
+    return () => clearInterval(intervalId);
   }, []);
 
   if (error) {
