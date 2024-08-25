@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./BeneProfilePage.css";
-import LoggedInNavbar from "../../components/LoggedInNavBar/LoggedInNavBar";
+// import LoggedInNavbar from "../../components/LoggedInNavBar/LoggedInNavBar";
+import Navbar from "../../components/Navbar/Navbar";
 
 function BeneProfilePage() {
   const [status, setStatus] = useState("Delivered");
@@ -28,7 +29,7 @@ function BeneProfilePage() {
 
   return (
     <div>
-      <LoggedInNavbar />
+      <Navbar />
       <div className="profile-page">
         <div className="profile-sidebar">
           <img
@@ -41,7 +42,7 @@ function BeneProfilePage() {
             <p>Tom</p>
             <p>Email: abchome@gmail.com</p>
             <p>Phone: 9123 4567</p>
-            <p>Location: Jurong East</p>
+            {/* <p>Location: Jurong East</p> */}
             <button className="edit-profile-button">Edit Profile</button>
           </div>
         </div>

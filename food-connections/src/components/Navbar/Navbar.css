@@ -1,3 +1,4 @@
+/* General Styles */
 #navbar {
     display: flex;
     width: 100%;
@@ -42,9 +43,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.nav-signup-button {
+    padding: 10px;
+  }
+  
+  /* Logged-out Styles */
+  .logged-out-navbar {
+    background-color: #28a745; /* Green background */
+  }
+  
+  .logged-out-word {
+    color: white;
+  }
+  
+  .logged-out-button {
+    color: #28a745;
     background-color: white;
     color: rgba(13, 74, 62, 1);
     padding: 10px 20px;

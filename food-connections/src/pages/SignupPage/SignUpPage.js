@@ -40,7 +40,7 @@ function SignUpPage() {
     if (role === "Donor") {
       navigate("/donor-approval"); // Navigate to Donor Approval Page
     } else if (role === "Beneficiary") {
-      navigate("/home"); // Navigate to HomePage
+      navigate("/bene-home"); // Navigate to Beneficiary Home pagePage
     }
     // Handle other sign-up logic here
 

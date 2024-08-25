@@ -22,7 +22,7 @@ function App() {
         <Route path="/donor-home" element={<DonorHomePage />} />
         <Route path="/bene-home" element={<BeneHomePage />} />
         <Route path="/donor-profile" element={<DonorProfilePage />} />
-        <Route path="/bene-profile" element={<DonorProfilePage />} />
+        <Route path="/bene-profile" element={<BeneProfilePage />} />
         {/* <Route path="/bene-home" element={<BeneHomePage />} /> */}
         {/* <Route path="/bene-profile" element={<BeneProfilePage />} /> */}
         <Route path="/form" element={<FormPage />} />

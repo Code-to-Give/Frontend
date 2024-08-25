@@ -6,7 +6,9 @@ export const login = async (data) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/users/login`, data);
     localStorage.setItem("accessToken", response.data.access_token);
-    return response.data;
+    // debugging
+    console.log("Login response:", response);
+    return response ? response.data : null;
   } catch (error) {
     if (error.response) {
       // Request made and server responded with a status other than 2xx
