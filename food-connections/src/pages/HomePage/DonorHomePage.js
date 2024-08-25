@@ -33,7 +33,7 @@ function DonorHomePage() {
         console.log(data);
       }
     } catch (err) {
-      setError("Failed to load donor information.");
+      setError("Failed to get donations.");
     }
   };
 

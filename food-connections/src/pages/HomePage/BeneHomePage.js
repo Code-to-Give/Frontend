@@ -16,6 +16,21 @@ function BeneHomePage() {
   const [donations, setDonations] = useState([]);
   const [error, setError] = useState(null);
 
+  const fetchDonations = async () => {
+    try {
+      console.log("Fetching donations");
+      const data = await getDonations();
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setDonations(data);
+        console.log(data);
+      }
+    } catch (err) {
+      setError("Failed to get donations.");
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -76,7 +91,10 @@ function BeneHomePage() {
             </div>
           </div>
           <div className="pending-donations">
-            <BenePendingDonations donations={donations} />
+            <BenePendingDonations
+              donations={donations}
+              refresh={fetchDonations}
+            />
           </div>
         </div>
       </div>
