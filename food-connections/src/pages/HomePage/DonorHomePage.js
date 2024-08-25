@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./DonorHomePage.css";
-import LoggedInNavbar from "../../components/LoggedInNavBar/LoggedInNavBar";
+import Navbar from "../../components/Navbar/Navbar";
 import Piechart from "../../components/Piechart/Piechart";
 import Histogram from "../../components/Histogram/Histogram";
 import DonutChart from "../../components/DonutChart/DonutChart";
@@ -16,7 +16,7 @@ function DonorHomePage() {
 
     return (
         <div>
-            <LoggedInNavbar />
+            <Navbar />
             <div className="dashboard-container">
                 <header className="dashboard-header">
                     <h1>Hello there, MBS</h1>
