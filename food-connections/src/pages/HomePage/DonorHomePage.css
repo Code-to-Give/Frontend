@@ -117,3 +117,17 @@ body {
     margin-bottom: 15px;
     color: #ffffff;
 }
+
+.donations-banner {
+    background-color: #086D52; /* Green background */
+    color: white; /* White text */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.donations-banner h3 {
+    margin: 0;
+    font-size: 18px;
+}

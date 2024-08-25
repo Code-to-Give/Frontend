@@ -94,6 +94,9 @@ function DonorHomePage() {
             </div>
           </div>
           <div className="pending-donations">
+            <div className="donations-banner">
+              <h3>Donations</h3>
+            </div>
             <DonorPendingDonations donations={donations} />
           </div>
         </div>
