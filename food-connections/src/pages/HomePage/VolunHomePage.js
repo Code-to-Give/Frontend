@@ -5,14 +5,20 @@ import Histogram from "../../components/Histogram/Histogram";
 import DonutChart from "../../components/DonutChart/DonutChart";
 import VolunteerNotif from "../../components/VolunteerNotif/VolunteerNotif";
 import Navbar from "../../components/Navbar/Navbar";
+import { useAuth } from "../../utils/AuthContext";
+
 
 function VolunHomePage() {
+  const { user } = useAuth();
+  
+  // console.log(user);
+  console.log(user.name);
   return (
     <div>
       <Navbar />
       <div className="dashboard-container">
         <header className="dashboard-header">
-          <h1>Hello there, Volunteer X</h1>
+          <h1>Hello there, {JSON.parse(user).name}</h1>
         </header>
         <div className="dashboard-content">
           <div className="charts">
