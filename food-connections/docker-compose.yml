@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./Frontend/food-connections
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./Frontend/food-connections/src:/app/src
+      - ./Frontend/food-connections/public:/app/public
+    networks:
+      - my_network
+
+  backend-auth:
+    build:
+      context: ./Backend/auth
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./Backend/auth/app:/app
+    env_file:
+      - ./Backend/.env
+    networks:
+      - my_network
+
+  backend-algo:
+    build:
+      context: ./Backend/algo
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./Backend/algo/app:/app
+    networks:
+      - my_network
+    env_file:
+      - ./Backend/.env
+
+networks:
+  my_network:
+    driver: bridge
