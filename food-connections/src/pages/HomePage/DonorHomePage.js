@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./DonorHomePage.css";
 import Navbar from "../../components/Navbar/Navbar";
+import LoggedInNavbar from "../../components/LoggedInNavBar/LoggedInNavBar";
 import Piechart from "../../components/Piechart/Piechart";
 import Histogram from "../../components/Histogram/Histogram";
 import DonutChart from "../../components/DonutChart/DonutChart";
