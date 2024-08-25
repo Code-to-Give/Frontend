@@ -32,6 +32,9 @@ function DonorHomePage() {
       }
     };
 
+    fetchDonorData();
+  }, []);
+
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -40,22 +43,22 @@ function DonorHomePage() {
     return <div>Loading...</div>;
   }
 
-    return (
-        <div>
-            <Navbar />
-            <div className="dashboard-container">
-                <header className="dashboard-header">
-                    <h1>Hello there, MBS</h1>
-                    <button className="open-form-button" onClick={toggleFormPopup}>
-                        Food to donate?
-                    </button>
-                </header>
-                <div className="dashboard-content">
-                    <div className="charts">
-                        <div className="chart-item">
-                            <h2>Gender</h2>
-                            <Piechart />
-                        </div>
+  return (
+    <div>
+      <Navbar />
+      <div className="dashboard-container">
+        <header className="dashboard-header">
+          <h1>Hello there, MBS</h1>
+          <button className="open-form-button" onClick={toggleFormPopup}>
+            Food to donate?
+          </button>
+        </header>
+        <div className="dashboard-content">
+          <div className="charts">
+            <div className="chart-item">
+              <h2>Gender</h2>
+              <Piechart />
+            </div>
 
             <div className="chart-item">
               <h2>Location</h2>
