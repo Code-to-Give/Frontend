@@ -23,10 +23,16 @@ function SignUpPage() {
     }
     */
 
+    // Check if the password length is at least 8 characters
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters long.");
+      return;
+    }
+
     if (role === 'donor') {
       navigate('/donor-approval'); // Navigate to Donor Approval Page
     } else if (role === 'beneficiary') {
-      navigate('/home'); // Navigate to BeneHomePage
+      navigate('/home'); // Navigate to HomePage
     }
     // Handle other sign-up logic here
   };
@@ -53,7 +59,6 @@ function SignUpPage() {
                 placeholder="Company Name"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
-                // required
               />
             </div>
             <div className="input-group">
@@ -63,7 +68,6 @@ function SignUpPage() {
                 placeholder="Representative's Name"
                 value={repName}
                 onChange={(e) => setRepName(e.target.value)}
-                // required
               />
             </div>
             <div className="input-group">
@@ -73,7 +77,6 @@ function SignUpPage() {
                 placeholder="Representative's Phone Number"
                 value={repPhone}
                 onChange={(e) => setRepPhone(e.target.value)}
-                // required
               />
             </div>
             <div className="input-group">
@@ -83,7 +86,6 @@ function SignUpPage() {
                 placeholder="Representative's Work E-Mail"
                 value={repEmail}
                 onChange={(e) => setRepEmail(e.target.value)}
-                // required
               />
             </div>
             <div className="input-group">
@@ -93,7 +95,6 @@ function SignUpPage() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                // required
               />
             </div>
             <div className="input-group">
@@ -101,14 +102,12 @@ function SignUpPage() {
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                // required
               >
                 <option value="" disabled>Donor/Beneficiary</option>
                 <option value="donor">Donor</option>
                 <option value="beneficiary">Beneficiary</option>
               </select>
             </div>
-            {/* <button className="register" onClick={handleSubmit}>Sign Up</button> */}
             <Button text="Sign Up" onClick={handleSubmit} fullWidth /> 
           </div>
         </div>
