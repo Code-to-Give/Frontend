@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import "./Navbar.css";
 
@@ -9,8 +8,7 @@ function Navbar() {
   const [isLoggedIn, setisLoggedIn] = useState(localStorage.getItem("accessToken") !== null);
   useEffect(() => {
     setisLoggedIn(localStorage.getItem("accessToken") !== null);
-  } );
-  const navigate = useNavigate();
+  }, [] );
 
   return (
     <div id="navbar" className={isLoggedIn ? "logged-in-navbar" : "logged-out-navbar"}>

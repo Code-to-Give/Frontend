@@ -1,6 +1,6 @@
 import React from "react";
 import "./BeneHomePage.css";
-import LoggedInNavbar from "../../components/LoggedInNavBar/LoggedInNavBar";
+import Navbar from "../../components/Navbar/Navbar";
 import Piechart from "../../components/Piechart/Piechart";
 import Histogram from "../../components/Histogram/Histogram";
 import DonutChart from "../../components/DonutChart/DonutChart";
@@ -9,7 +9,7 @@ import BenePendingDonations from "../../components/PendingDonations/BenePendingD
 function BeneHomePage() {
   return (
     <div>
-      <LoggedInNavbar />
+      <Navbar />
       <div className="dashboard-container">
         <header className="dashboard-header">
           <h1>Hello there, Company X</h1>

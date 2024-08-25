@@ -16,7 +16,7 @@ function DonorHomePage() {
 
     return (
         <div>
-            <LoggedInNavbar />
+            <Navbar />
             <div className="dashboard-container">
                 <header className="dashboard-header">
                     <h1>Hello there, MBS</h1>
