@@ -104,7 +104,7 @@ function DonorHomePage() {
             <span className="close" onClick={toggleFormPopup}>
               &times;
             </span>
-            <FormPage />
+            <FormPage onSubmit={toggleFormPopup}/>
           </div>
         </div>
       )}
