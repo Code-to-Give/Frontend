@@ -4,11 +4,13 @@ import "./LoginPage.css";
 import Navbar from "../../components/Navbar/Navbar";
 import { getCurrentUser, login } from "../../api/authApi";
 import Button from "../../components/Button/Button";
+import { useAuth } from "../../utils/AuthContext";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const { saveToken, removeToken } = useAuth();
 
   const navigate = useNavigate();
 
@@ -16,7 +18,10 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await login({ email, password });
+      const data = await login({ email, password });
+
+      saveToken(data?.access_token);
+      console.log("login data: ", data);
 
       // use token to get user data
       const user = await getCurrentUser();
@@ -33,9 +38,7 @@ function LoginPage() {
       } else {
         console.error("Invalid user role:", userRole);
         setError("Invalid user role. Please try again.");
-
-        // Log out user
-        localStorage.removeItem("accessToken");
+        removeToken();
         navigate("/home");
       }
     } catch (err) {

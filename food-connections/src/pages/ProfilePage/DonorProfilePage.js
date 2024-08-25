@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './DonorProfilePage.css';
-import LoggedInNavbar from "../../components/LoggedInNavBar/LoggedInNavBar";
+import Navbar from '../../components/Navbar/Navbar';
 
 function DonorProfilePage() {
     // state for the profile details (currently default values - can see if wanna connect to DB backend params)
@@ -52,7 +52,7 @@ function DonorProfilePage() {
 
     return (
       <div>
-        <LoggedInNavbar />
+        <Navbar />
         <div className="profile-page">
             <div className="profile-sidebar">
                 <img src="path_to_logo_or_profile_picture" alt="Company Logo" className="profile-logo" />

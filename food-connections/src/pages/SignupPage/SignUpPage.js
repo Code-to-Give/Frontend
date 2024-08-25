@@ -37,9 +37,9 @@ function SignUpPage() {
     }
 
     if (role === "Donor") {
-      navigate("/donor-approval");
-    } else if (role === "Beneficiary" || role === "Volunteer") {
-      navigate("/home");
+      navigate("/donor-approval"); // Navigate to Donor Approval Page
+    } else if (role === "Beneficiary") {
+      navigate("/bene-home"); // Navigate to Beneficiary Home pagePage
     }
 
     try {
