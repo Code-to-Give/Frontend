@@ -3,9 +3,11 @@ import "./VolunHomePage.css";
 import Piechart from "../../components/Piechart/Piechart";
 import Histogram from "../../components/Histogram/Histogram";
 import DonutChart from "../../components/DonutChart/DonutChart";
+import StackedBarChart from "../../components/StackedBarChart/StackedBarChart";
 import VolunteerNotif from "../../components/VolunteerNotif/VolunteerNotif";
 import Navbar from "../../components/Navbar/Navbar";
 import { useAuth } from "../../utils/AuthContext";
+
 
 
 function VolunHomePage() {
@@ -23,23 +25,23 @@ function VolunHomePage() {
         <div className="dashboard-content">
           <div className="charts">
             <div className="chart-item">
-              <h2>Gender</h2>
+              <h2>Overall Percentage of Food Delivered</h2>
               <Piechart />
             </div>
 
             <div className="chart-item">
-              <h2>Location</h2>
+              <h2>Food Type</h2>
               <DonutChart />
             </div>
 
             <div className="chart-item">
-              <h2>Age</h2>
+              <h2>Food Delivered This Week</h2>
               <Histogram />
             </div>
 
             <div className="chart-item">
-              <h2>Organisation</h2>
-              <DonutChart />
+              <h2>Number of meals Donated and Delivered</h2>
+              <StackedBarChart />
             </div>
           </div>
           <div className="pending-donations">
