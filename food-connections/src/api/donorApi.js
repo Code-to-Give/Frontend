@@ -44,3 +44,17 @@ export const getDonorInformation = async (data) => {
     }
   }
 };
+
+export const submitDonationForm = async (data) => {
+  const accessToken = localStorage.getItem("accessToken");
+
+  if (!accessToken) {
+    return { error: "No access token found. Please log in again." };
+  }
+
+  try {
+  } catch (error) {
+    console.error("Error submitting donation information", error);
+    throw error;
+  }
+};

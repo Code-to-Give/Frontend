@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./DonorHomePage.css";
 import LoggedInNavbar from "../../components/LoggedInNavBar/LoggedInNavBar";
 import Piechart from "../../components/Piechart/Piechart";
@@ -6,20 +6,48 @@ import Histogram from "../../components/Histogram/Histogram";
 import DonutChart from "../../components/DonutChart/DonutChart";
 import DonorPendingDonations from "../../components/PendingDonations/DonorPendingDonations";
 import FormPage from "../../pages/FormPage/FormPage";
+import { getDonorInformation } from "../../api/donorApi";
 
 function DonorHomePage() {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [donorData, setDonorData] = useState(null);
+  const [error, setError] = useState(null);
 
   const toggleFormPopup = () => {
     setIsFormOpen(!isFormOpen);
   };
+
+  useEffect(() => {
+    const fetchDonorData = async () => {
+      try {
+        const data = await getDonorInformation();
+        if (data.error) {
+          setError(data.error);
+        } else {
+          setDonorData(data);
+        }
+      } catch (err) {
+        setError("Failed to load donor information.");
+      }
+    };
+
+    fetchDonorData();
+  }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!donorData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
       <LoggedInNavbar />
       <div className="dashboard-container">
         <header className="dashboard-header">
-          <h1>Hello there, MBS</h1>
+          <h1>Hello there, {donorData.name}</h1>
           <button className="open-form-button" onClick={toggleFormPopup}>
             Food to donate?
           </button>
