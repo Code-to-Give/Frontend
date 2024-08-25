@@ -64,6 +64,7 @@ export const acceptDonation = async (data) => {
     // Try to read donor information
     const response = await axios.post(
       `${API_BASE_URL}/donations/${data.id}/accept`,
+      {},
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -89,6 +90,7 @@ export const rejectDonation = async (data) => {
     // Try to read donor information
     const response = await axios.post(
       `${API_BASE_URL}/donations/${data.id}/reject`,
+      {},
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
