@@ -22,6 +22,20 @@ function DonorHomePage() {
     setIsFormOpen(!isFormOpen);
   };
 
+  const fetchDonations = async () => {
+    try {
+      const data = await getDonations();
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setDonations(data);
+        console.log(data);
+      }
+    } catch (err) {
+      setError("Failed to load donor information.");
+    }
+  };
+
   useEffect(() => {
     const fetchDonorData = async () => {
       try {
@@ -36,22 +50,8 @@ function DonorHomePage() {
       }
     };
 
-    const fetchDonations = async () => {
-      try {
-        const data = await getDonations();
-        if (data.error) {
-          setError(data.error);
-        } else {
-          setDonations(data);
-          console.log(data);
-        }
-      } catch (err) {
-        setError("Failed to load donor information.");
-      }
-    };
     fetchDonorData();
     fetchDonations();
-  }, [user]);
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -60,6 +60,8 @@ function DonorHomePage() {
   if (!donorData) {
     return <div>Loading...</div>;
   }
+
+}, [user]);
 
   return (
     <div>
@@ -107,7 +109,9 @@ function DonorHomePage() {
             <span className="close" onClick={toggleFormPopup}>
               &times;
             </span>
-            <FormPage onSubmit={toggleFormPopup}/>
+            <FormPage onSubmit={() => {
+                toggleFormPopup();
+                fetchDonations();}}/>
           </div>
         </div>
       )}
