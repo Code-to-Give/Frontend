@@ -57,14 +57,20 @@ function SignUpPage() {
       await register(data);
 
       if (role === "Donor") {
-        navigate("/donor-approval"); // Navigate to Donor Approval Page
-      } else if (role === "beneficiary") {
-        navigate("/home"); // Navigate to HomePage
+        navigate("/donor-approval");
+      } else if (role === "Beneficiary") {
+          navigate("/home");
       }
+    
     } catch (err) {
       // Handle error
       console.error("Registration failed:", err);
+      // Show error message
       setError("Registration failed. Please check your inputs and try again.");
+      // find out where the error is coming from
+      console.log(error.response.data);
+
+
     }
   };
 
