@@ -87,7 +87,7 @@ const DonationItem = ({
   );
 };
 
-const BenePendingDonations = ({ donations }) => {
+const BenePendingDonations = ({ donations, refresh }) => {
   console.log(donations);
 
   const handleAccept = async (id) => {
@@ -95,6 +95,7 @@ const BenePendingDonations = ({ donations }) => {
       console.log(`${id} accepted`);
       const response = await acceptDonation({ id });
       console.log("Accept response:", response);
+      refresh();
     } catch (error) {
       console.error("Failed to accept donation:", error);
       alert("Failed to accept the donation. Please try again.");
@@ -106,6 +107,7 @@ const BenePendingDonations = ({ donations }) => {
       console.log(`${id} declined`);
       const response = await rejectDonation({ id });
       console.log("Decline response:", response);
+      refresh();
     } catch (error) {
       console.error("Failed to decline donation:", error);
       alert("Failed to decline the donation. Please try again.");
@@ -114,7 +116,7 @@ const BenePendingDonations = ({ donations }) => {
 
   return (
     <div className="container">
-      <h2 className="title">Pending donations</h2>
+      <h2 className="title">Donations</h2>
       {donations.map((donation, index) => (
         <DonationItem
           key={index}

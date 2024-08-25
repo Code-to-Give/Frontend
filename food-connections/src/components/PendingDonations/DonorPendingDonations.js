@@ -64,7 +64,7 @@ const DonationItem = ({ name, status, quantity, location, expiry_time }) => {
 const DonorPendingDonations = ({ donations }) => {
   return (
     <div className="donationsContainer">
-      <h2 className="donationsTitle">Pending Donations</h2>
+      <h2 className="donationsTitle">Donations</h2>
       {donations === undefined || donations.length === 0 ? (
         <p className="noDonationsText">No pending donations</p>
       ) : (
