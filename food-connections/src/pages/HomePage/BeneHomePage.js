@@ -51,7 +51,7 @@ function BeneHomePage() {
       <Navbar />
       <div className="dashboard-container">
         <header className="dashboard-header">
-          <h1>Hello there, {JSON.parse(user).company_name}</h1>
+          <h1>Hello there, {JSON.parse(user).company_name ?? "Beneficiary"}</h1>
         </header>
         <div className="dashboard-content">
           <div className="charts">
