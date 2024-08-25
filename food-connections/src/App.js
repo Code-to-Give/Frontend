@@ -11,6 +11,7 @@ import DonorApprovalPage from "./pages/DonorApprovalPage/DonorApprovalPage";
 import DonorHomePage from "./pages/HomePage/DonorHomePage";
 import VolunHomePage from "./pages/HomePage/VolunHomePage";
 
+
 import "./App.css";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/home" element={<VolunHomePage />} />
         <Route path="/donor-profile" element={<DonorProfilePage />} />
         <Route path="/bene-profile" element={<BeneProfilePage />} />
+        
         {/* <Route path="/bene-home" element={<BeneHomePage />} /> */}
         {/* <Route path="/bene-profile" element={<BeneProfilePage />} /> */}
         <Route path="/form" element={<FormPage />} />

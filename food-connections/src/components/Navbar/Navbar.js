@@ -1,63 +1,76 @@
-import { Link } from 'react-router-dom';
-import './Navbar.css';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useAuth } from '../../utils/AuthContext';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../utils/AuthContext";
+import { getCurrentUser } from "../../api/authApi"; // Import your API function
+import "./Navbar.css";
 
 function Navbar() {
-  // Check if access token exists in local storage
-    
-    const { removeToken, token } = useAuth();
-    const [isLoggedIn, setisLoggedIn] = useState(token !== null);
+  const { token, saveToken, removeToken, saveUser, removeUser } = useAuth();
+  const [isLoggedIn, setisLoggedIn] = useState(token !== null);
+  const [userRole, setUserRole] = useState(null);
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
-        
-        setisLoggedIn(token !== null);
-    }, [token] );
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    return (
-        <div id="navbar" className={isLoggedIn ? "logged-in-navbar" : "logged-out-navbar"}>
-        <div id="navbar-left">
-            {isLoggedIn && <img src="/hamburger.png" alt="Hamburger" id="hamburger-image" />}
-            <Link to="/" className={isLoggedIn ? "word logged-in-word" : "word logged-out-word"}>
-            Food-Connections
-            </Link>
-        </div>
-        <div id="navbar-right">
-            {token ? (
-            <>
-                <input type="text" className="search-bar" placeholder="Search..." />
-                <Link to="/profile">
-                <button className="nav-button logged-in-button">Profile</button>
-                </Link>
-                <Link to="/">
-                <button
-                    className="nav-button logged-in-button"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        removeToken();
-                        navigate('/');
-                        window.location.reload(); // Refresh the page to update the navbar
-                    }}
-                >
-                    Log-Out
-                </button>
-                </Link>
-            </>
-            ) : (
-            <>
-                <Link to="/login" className="nav-button logged-out-button">
-                Log In
-                </Link>
-                <Link to="/signup" className="nav-button logged-out-button">
-                Sign Up
-                </Link>
-            </>
-            )}
-        </div>
-        </div>
-    );
+  useEffect(() => {
+    setisLoggedIn(token !== null);
+    if (token) {
+      fetchUserRole();
     }
+  }, [token]);
 
-    export default Navbar;
+  const fetchUserRole = async () => {
+    try {
+      const user = await getCurrentUser();
+      const parsedUser = JSON.stringify(user);
+      saveUser(parsedUser);
+      console.log("User data:", user);
+
+      setUserRole(user.role);
+    } catch (error) {
+      console.error("Error fetching user role:", error);
+      setError("Failed to fetch user role.");
+      removeToken();
+      removeUser();
+      navigate("/login");
+    }
+  };
+
+  const handleLogout = () => {
+    removeToken();
+    removeUser();
+    setisLoggedIn(false);
+    navigate("/");
+  };
+
+  return (
+    <div id="navbar" className={isLoggedIn ? "logged-in-navbar" : "logged-out-navbar"}>
+      <div id="navbar-left">
+        {isLoggedIn && <img src="/hamburger.png" alt="Hamburger" id="hamburger-image" />}
+        <Link to="/" className={isLoggedIn ? "word logged-in-word" : "word logged-out-word"}>
+          Food-Connections
+        </Link>
+      </div>
+      <div id="navbar-right">
+        {token ? (
+          <>
+            <input type="text" className="search-bar" placeholder="Search..." />
+            {userRole === "Donor" && <Link to="/donor-profile"><button className="nav-button logged-in-button">Profile</button></Link>}
+            {userRole === "Beneficiary" && <Link to="/bene-profile"><button className="nav-button logged-in-button">Profile</button></Link>}
+            {userRole === "Volunteer" && <Link to="/home"><button className="nav-button logged-in-button">Home</button></Link>}
+            <button className="nav-button logged-in-button" onClick={handleLogout}>
+              Log-Out
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="nav-button logged-out-button">Log In</Link>
+            <Link to="/signup" className="nav-button logged-out-button">Sign Up</Link>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default Navbar;
