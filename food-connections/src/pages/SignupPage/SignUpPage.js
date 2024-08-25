@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
-import "./SignUpPage.css";
-import Navbar from "../../components/Navbar/Navbar";
-import { register } from "../../api/authApi";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './SignUpPage.css';
+import Navbar from '../../components/Navbar/Navbar';
+import Button from '../../components/Button/Button';
 
 function SignUpPage() {
   const [companyName, setCompanyName] = useState("");
@@ -30,27 +30,16 @@ function SignUpPage() {
       return;
     }
 
-    try {
-      const data = {
-        company_name: companyName,
-        name: repName,
-        phone_number: repPhone,
-        email: repEmail,
-        password,
-        role,
-      };
+    // Check if the password length is at least 8 characters
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters long.");
+      return;
+    }
 
-      await register(data);
-
-      if (role === "Donor") {
-        navigate("/donor-approval"); // Navigate to Donor Approval Page
-      } else if (role === "beneficiary") {
-        navigate("/home"); // Navigate to HomePage
-      }
-    } catch (err) {
-      // Handle error
-      console.error("Registration failed:", err);
-      setError("Registration failed. Please check your inputs and try again.");
+    if (role === 'donor') {
+      navigate('/donor-approval'); // Navigate to Donor Approval Page
+    } else if (role === 'beneficiary') {
+      navigate('/home'); // Navigate to HomePage
     }
   };
 
@@ -78,7 +67,6 @@ function SignUpPage() {
                 placeholder="Company Name"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
-                // required
               />
             </div>
             <div className="input-group">
@@ -88,7 +76,6 @@ function SignUpPage() {
                 placeholder="Representative's Name"
                 value={repName}
                 onChange={(e) => setRepName(e.target.value)}
-                // required
               />
             </div>
             <div className="input-group">
@@ -98,7 +85,6 @@ function SignUpPage() {
                 placeholder="Representative's Phone Number"
                 value={repPhone}
                 onChange={(e) => setRepPhone(e.target.value)}
-                // required
               />
             </div>
             <div className="input-group">
@@ -108,7 +94,6 @@ function SignUpPage() {
                 placeholder="Representative's Work E-Mail"
                 value={repEmail}
                 onChange={(e) => setRepEmail(e.target.value)}
-                // required
               />
             </div>
             <div className="input-group">
@@ -118,7 +103,6 @@ function SignUpPage() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                // required
               />
             </div>
             <div className="input-group">
@@ -126,7 +110,6 @@ function SignUpPage() {
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                // required
               >
                 <option value="" disabled>
                   Donor/Beneficiary
@@ -135,10 +118,7 @@ function SignUpPage() {
                 <option value="Beneficiary">Beneficiary</option>
               </select>
             </div>
-            {error && <p className="error-message">{error}</p>}
-            <button className="register" onClick={handleSubmit}>
-              Sign Up
-            </button>
+            <Button text="Sign Up" onClick={handleSubmit} fullWidth /> 
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ function DonorApprovalPage() {
       <div className="approval-content">
         <h1>Your approval for registration is on its way!</h1>
         <p>Our team is reviewing it and you will be notified.</p>
-        <Link to="/" className="back-to-home-button">Back to LandingPage</Link>
+        <Link to="/" className="back-to-home-button">Back to Landing Page</Link>
       </div>
     </div>
   );

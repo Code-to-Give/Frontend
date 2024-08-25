@@ -1,24 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import InformationCard from '../../components/InformationCard/InformationCard';
 import './DonorProfilePage.css';
-
-// pop up of past donations
-function Modal({ show, handleClose, children }) {
-    return (
-        <div className={`modal ${show ? 'show' : ''}`}>
-            <div className="modal-content">
-                <span className="close" onClick={handleClose}>&times;</span>
-                {children}
-            </div>
-        </div>
-    );
-}
+import LoggedInNavbar from "../../components/LoggedInNavBar/LoggedInNavBar";
 
 function DonorProfilePage() {
-
     const [status, setStatus] = useState('Accepted');
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const toggleStatus = () => {
         setStatus(prevStatus => (prevStatus === 'Accepted' ? 'Rejected' : 'Accepted'));
@@ -26,46 +13,69 @@ function DonorProfilePage() {
 
     const buttonClass = status === 'Accepted' ? 'status-button status-accepted' : 'status-button status-rejected';
 
-    const handleModalOpen = () => {
-        setIsModalOpen(true);
+    const handlePopupOpen = () => {
+        setIsPopupOpen(true);
     };
 
-    const handleModalClose = () => {
-        setIsModalOpen(false);
+    const handlePopupClose = () => {
+        setIsPopupOpen(false);
     };
 
-  return (
-    <div>
-      <InformationCard company={"MBS"} name={"Marry"} email={"mbs@gmail.com"} phone={"12345678"} location={"Marina Bay"}/>
-      <div className="body-container">
-        <div className="body-block">
-          <h2 className="block-title">History</h2>
-            <div className="block-content">
-                <p>Beneficiary: </p>
-                {/*placeholder can connect to acc/rej donations ltr*/}
-                <button onClick={toggleStatus} className={buttonClass}>
-                    {status}
-                </button>
+    return (
+      <div>
+        <LoggedInNavbar />
+        <div className="profile-page">
+            <div className="profile-sidebar">
+                <img src="path_to_logo_or_profile_picture" alt="Company Logo" className="profile-logo" />
+                <div className="profile-info">
+                    <h2>Company X</h2>
+                    <p>Marry, CEO</p>
+                    <p>Email: mbs@gmail.com</p>
+                    <p>Phone: 123-456-7890</p>
+                    <p>Location: Marina Bay</p>
+                    <button className="edit-profile-button">Edit Profile</button>
+                </div>
             </div>
-        </div>
-        <div className="body-block">
-          <h2 className="block-title">Pending Food Donation Details</h2>
-          <div className="block-content">
-            <p>Quantity: </p>
-            <p>Type: </p>
-          </div>
-        </div>
-        
-      </div>
-      <Link to="/home"><button>Back to Home</button></Link>
+            <div className="profile-main">
+                <div className="header-bar">
+                    <h1>Welcome, Company X</h1>
+                    <Link to="/home" className="back-button">Back to Home</Link>
+                </div>
+                <div className="dashboard">
+                    <div className="dashboard-section">
+                        <h2>History</h2>
+                        <button onClick={handlePopupOpen} className="modal-button">
+                            View Donation Details
+                        </button>
+                        <p>Beneficiary: ABC Home</p>
+                        <button onClick={toggleStatus} className={buttonClass}>
+                            {status}
+                        </button>
+                    </div>
+                    <div className="dashboard-section">
+                        <h2>Pending Donations</h2>
+                        <p>Quantity: 100 trays</p>
+                        <p>Type: Halal</p>
+                    </div>
+                </div>
+            </div>
 
-      {/* Modal for the Beneficiary popup */}
-       <Modal show={isModalOpen} handleClose={handleModalClose}>
-        <h2>Beneficiary Information</h2>
-        <p>Details about the beneficiary...</p>
-       </Modal>
-    </div>
-  );
+            {/* Popup component */}
+            {isPopupOpen && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={handlePopupClose}>&times;</span>
+                        <h3>Donation Details</h3>
+                        <p>Beneficiary: ABC Home</p>
+                        <p>Details: Established in 2003, located at Jurong East</p>
+                        <p>Timing: Monday 16:00-20:00h</p>
+                        <p>Donation: 100 trays of fried rice (Halal)</p>
+                    </div>
+                </div>
+            )}
+        </div>
+      </div>
+    );
 }
 
 export default DonorProfilePage;
