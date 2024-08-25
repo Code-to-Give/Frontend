@@ -1,23 +1,30 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "./DonutChart.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const LocationDonutChart = () => {
+const FoodTypeDonutChart = () => {
   const data = {
-    labels: ["West", "South", "North", "Central", "East"],
+    labels: ["Halal", "Vegetarian", "Vegan", "Gluten-Free", "Non-Vegetarian"],
     datasets: [
       {
-        label: "Location",
-        data: [37, 25, 15, 10, 13],
+        label: "Food Types",
+        data: [40, 25, 15, 10, 10], // Fake data for food types
         backgroundColor: [
-          "#3f00ff", // Blue
-          "#c700ff", // Purple
-          "#ff0049", // Red
-          "#c4d31b", // Green
-          "#ff9900", // Orange
+          "#FF6384", // Pink for Halal
+          "#36A2EB", // Blue for Vegetarian
+          "#FFCE56", // Yellow for Vegan
+          "#4BC0C0", // Teal for Gluten-Free
+          "#9966FF", // Purple for Non-Vegetarian
+        ],
+        hoverBackgroundColor: [
+          "#FF6384",
+          "#36A2EB",
+          "#FFCE56",
+          "#4BC0C0",
+          "#9966FF",
         ],
         borderColor: ["#ffffff"],
         borderWidth: 1,
@@ -26,7 +33,6 @@ const LocationDonutChart = () => {
     ],
   };
 
-  // added code to ensure the chart is responsive
   const options = {
     plugins: {
       legend: {
@@ -40,33 +46,19 @@ const LocationDonutChart = () => {
         size: 16,
       },
     },
-    maintainAspectRatio: false, 
-    // responsive: true, 
+    maintainAspectRatio: false,
   };
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     // update the component if needed to ensure correct centering
-  //     window.dispatchEvent(new Event('resize'));
-  //   };
-
-  //   window.addEventListener('resize', handleResize);
-
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, []);
 
   return (
     <div className="chart-container">
       <Doughnut data={data} options={options} />
       <div className="chart-center-text">
-        37%
+        40%
         <br />
-        <span className="center-subtext">stay in the West</span>
+        <span className="center-subtext">are Halal</span>
       </div>
     </div>
   );
 };
 
-export default LocationDonutChart;
+export default FoodTypeDonutChart;

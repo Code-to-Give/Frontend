@@ -5,49 +5,54 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 // Register necessary Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
+
 function Piechart() {
-    // const [data, setData] = React.useState({"Male": 70, "Female": 30});
-    
     const data = {
-        labels: ['Female', 'Male'],
+        labels: ['Delivered to Families', 'Not Delivered'],
         datasets: [
-        {
-            data: [30, 70], // Data for each segment
-            backgroundColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            ],
-            hoverBackgroundColor: [
-            'rgba(255, 99, 132, 0.8)',
-            'rgba(54, 162, 235, 0.8)',
-            ],
-            borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            ],
-            borderWidth: 1,
-        },
+            {
+                data: [89, 11], // 89% delivered, 11% not delivered
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.6)', // Color for delivered portion
+                    'rgba(255, 99, 132, 0.6)', // Color for not delivered portion
+                ],
+                hoverBackgroundColor: [
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 99, 132, 1)',
+                ],
+                borderWidth: 1,
+            },
         ],
     };
 
     const options = {
         plugins: {
-        legend: {
-            labels: {
-            font: {
-                size: 20, // Adjust the font size for the labels
+            legend: {
+                labels: {
+                    font: {
+                        size: 14, // Adjust the font size for the labels
+                    },
+                },
+                display: false, // Hide the legend to reduce size
             },
+            tooltip: {
+                bodyFont: {
+                    size: 12, // Adjust the font size for the tooltip body
+                },
             },
         },
-        tooltip: {
-            bodyFont: {
-            size: 16, // Adjust the font size for the tooltip body
-            },
-        },
-        },
+        maintainAspectRatio: false,
     };
 
-    return <Pie data={data} options={options}/>;
+    return (
+        <div className="chart-container">
+            <Pie data={data} options={options} />
+        </div>
+    );
 }
 
 export default Piechart;

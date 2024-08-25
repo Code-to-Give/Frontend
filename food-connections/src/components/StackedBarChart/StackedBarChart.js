@@ -5,15 +5,22 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 // Register necessary Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const WeeklyFoodDelivery = () => {
+const StackedBarChart = () => {
   const data = {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], // Days of the week
+    labels: ['East', 'West', 'North', 'South', 'Central'], // Food types
     datasets: [
       {
-        label: 'Food Delivered (kg)',
-        data: [50, 75, 60, 90, 100, 80, 70], // Data corresponding to food delivered each day
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        label: 'Delivered',
+        data: [100, 80, 50, 40, 70], // Fake data for total food donated
+        backgroundColor: 'rgba(75, 192, 192, 0.6)', // Color for donated portion
         borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Donated',
+        data: [80, 60, 40, 30, 50], // Fake data for food delivered
+        backgroundColor: 'rgba(54, 162, 235, 0.6)', // Color for delivered portion
+        borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 1,
       },
     ],
@@ -22,19 +29,21 @@ const WeeklyFoodDelivery = () => {
   const options = {
     scales: {
       x: {
+        stacked: true, // Stack the x-axis
         title: {
           display: true,
-          text: 'Days of the Week',
+          text: 'Region',
           font: {
             size: 16,
           },
         },
       },
       y: {
+        stacked: true, // Stack the y-axis
         beginAtZero: true,
         title: {
           display: true,
-          text: 'Food Delivered (kg)',
+          text: 'Number of Items',
           font: {
             size: 16,
           },
@@ -51,10 +60,15 @@ const WeeklyFoodDelivery = () => {
           },
         },
       },
+      tooltip: {
+        bodyFont: {
+          size: 16,
+        },
+      },
     },
   };
 
   return <Bar data={data} options={options} />;
 };
 
-export default WeeklyFoodDelivery;
+export default StackedBarChart;
