@@ -8,15 +8,17 @@
 /* Sidebar styling */
 .profile-sidebar {
     width: 300px;
-    background-color: #737674; 
+    background-color: #2C3E50; 
     color: white;
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    gap: 20px; 
+    /* border-radius: 10px; */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    gap: 20px;
+    position: relative;
+    justify-content: center; 
 }
 
 .profile-logo {
@@ -28,28 +30,31 @@
 }
 
 .profile-info h2 {
-    font-size: 24px;
+    font-size: 26px; 
     margin-bottom: 10px;
+    text-align: center;
+    color: #ECF0F1; 
 }
 
 .profile-info p {
     margin: 5px 0;
     text-align: center;
+    color: #BDC3C7; 
 }
 
 .edit-profile-button {
-    margin-top: 20px;
-    background-color: #3CB371; /* Contrasting color for the button */
+    background-color: #1ABC9C; 
     color: white;
-    padding: 12px 20px;
+    padding: 12px 24px; 
     border: none;
-    border-radius: 8px;
+    border-radius: 50px; 
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
 }
 
 .edit-profile-button:hover {
-    background-color: #2E8B57;
+    background-color: #16A085;
     transform: scale(1.05);
 }
 
@@ -57,7 +62,8 @@
 .profile-main {
     flex: 1;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #ECF0F1;
+    overflow-y: auto;
 }
 
 .header-bar {
@@ -69,29 +75,31 @@
 
 .header-bar h1 {
     font-size: 28px;
-    color: #0D4A3E;
+    color: #34495E; 
 }
 
 .back-button {
-    background-color: #0D4A3E;
+    background-color: #34495E;
     color: white;
     padding: 10px 20px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 50px;
     font-size: 16px;
 }
 
 .back-button:hover {
-    background-color: #145A48;
+    background-color: #2C3E50;
 }
 
 .dashboard {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .dashboard-section {
     flex: 1;
+    min-width: 250px;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -101,12 +109,51 @@
 .dashboard-section h2 {
     font-size: 22px;
     margin-bottom: 15px;
-    color: #0D4A3E;
+    color: #34495E;
 }
 
 .dashboard-section p {
     font-size: 16px;
     margin-bottom: 10px;
+}
+
+/* Modal input styling */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #34495E; 
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #BDC3C7;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Ensure modal button does not move */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-button {
+    align-self: flex-end;
+    width: auto;
+    background-color: #3498DB; 
+}
+
+.modal-button:hover {
+    background-color: #2980B9;
 }
 
 /* Button styling */
@@ -130,20 +177,23 @@
     color: white;
 }
 
+/* "View Donation Details" Button */
 .modal-button {
-    width: 100%;
+    width: auto;
     padding: 10px;
     font-size: 16px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-radius: 50px; 
     border: none;
-    background-color: #AAC988;
+    background-color: #1ABC9C;
     color: white;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 10px;
 }
 
 .modal-button:hover {
-    background-color: #BEE198;
+    background-color: #16A085;
+    transform: scale(1.05);
 }
 
 /* Modal styling */
