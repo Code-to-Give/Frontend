@@ -76,7 +76,7 @@ function FormPage() {
               />
           </div>
         </div>
-        <Link to="/home"><button className="submit-button">Submit</button></Link>
+        <button className="submit-button">Submit</button>
       </div>
     </div>
   );
