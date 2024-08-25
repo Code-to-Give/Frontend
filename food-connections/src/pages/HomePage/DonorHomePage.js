@@ -24,6 +24,7 @@ function DonorHomePage() {
 
   const fetchDonations = async () => {
     try {
+      console.log("Fetching donations");
       const data = await getDonations();
       if (data.error) {
         setError(data.error);
@@ -60,6 +61,10 @@ function DonorHomePage() {
     };
 
     fetchData();
+
+    const intervalId = setInterval(fetchDonations, 10000);
+    return () => clearInterval(intervalId);
+
   }, []);
 
   if (error) {
@@ -116,9 +121,7 @@ function DonorHomePage() {
             <span className="close" onClick={toggleFormPopup}>
               &times;
             </span>
-            <FormPage onSubmit={() => {
-                toggleFormPopup();
-                fetchDonations();}}/>
+            <FormPage onSubmit={toggleFormPopup}/>
           </div>
         </div>
       )}
