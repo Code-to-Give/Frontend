@@ -19,14 +19,18 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/donor-approval" element={<DonorApprovalPage />} />
-        <Route path="/home" element={<DonorHomePage />} />
-        <Route path="/profile" element={<DonorProfilePage />} />
+        <Route path="/donor-home" element={<DonorHomePage />} />
+        <Route path="/bene-home" element={<BeneHomePage />} />
+        <Route path="/donor-profile" element={<DonorProfilePage />} />
+        <Route path="/bene-profile" element={<DonorProfilePage />} />
         <Route path="/bene-home" element={<BeneHomePage />} />
         <Route path="/bene-profile" element={<BeneProfilePage />} />
         <Route path="/form" element={<FormPage />} />
+
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
