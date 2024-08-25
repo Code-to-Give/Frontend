@@ -48,13 +48,7 @@ function DonorHomePage() {
           setDonorData(data);
         }
 
-        const donationData = await getDonations();
-        if (donationData.error) {
-          setError(donationData.error);
-        } else {
-          setDonations(donationData);
-          console.log(donationData);
-        }
+        await fetchDonations();
       } catch (err) {
         setError("An error occurred while fetching data.");
       }
@@ -65,6 +59,12 @@ function DonorHomePage() {
     const intervalId = setInterval(fetchDonations, 20000); // 20 s
     return () => clearInterval(intervalId);
   }, []);
+
+  const handleFormSubmit = async () => {
+    console.log("Form submitted, fetching donations...");
+    await fetchDonations();
+    toggleFormPopup();
+  };
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -116,12 +116,7 @@ function DonorHomePage() {
             <span className="close" onClick={toggleFormPopup}>
               &times;
             </span>
-            <FormPage
-              onSubmit={() => {
-                fetchDonations();
-                toggleFormPopup();
-              }}
-            />
+            <FormPage onSubmit={handleFormSubmit} />
           </div>
         </div>
       )}
