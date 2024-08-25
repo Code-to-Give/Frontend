@@ -27,6 +27,7 @@ export const login = async (data) => {
 export const register = async (data) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/users`, data);
+
     return response.data;
   } catch (error) {
     if (error.response) {
