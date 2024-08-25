@@ -10,7 +10,7 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const { removeToken } = useAuth();
+  const { saveToken, removeToken } = useAuth();
 
   const navigate = useNavigate();
 
@@ -18,7 +18,10 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      await login({ email, password });
+      const data = await login({ email, password });
+
+      saveToken(data?.access_token);
+      console.log("login data: ", data);
 
       // use token to get user data
       const user = await getCurrentUser();

@@ -3,9 +3,11 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 
 // Create the context
 const AuthContext = createContext();
+const UserContext = createContext();
 
 // Create a custom hook to use the context
 export const useAuth = () => useContext(AuthContext);
+export const useUser = () => useContext(UserContext);
 
 // Create the provider component
 export const AuthProvider = ({ children }) => {
@@ -13,6 +15,10 @@ export const AuthProvider = ({ children }) => {
         // Initialize token from localStorage if it exists
         return localStorage.getItem('accessToken') || '';
     });
+
+    
+
+
 
     const saveToken = (newToken) => {
         setToken(newToken);

@@ -11,8 +11,9 @@ function Navbar() {
     const [isLoggedIn, setisLoggedIn] = useState(token !== null);
 
     useEffect(() => {
+        
         setisLoggedIn(token !== null);
-    }, [] );
+    }, [token] );
     const navigate = useNavigate();
 
     return (
@@ -24,7 +25,7 @@ function Navbar() {
             </Link>
         </div>
         <div id="navbar-right">
-            {isLoggedIn ? (
+            {token ? (
             <>
                 <input type="text" className="search-bar" placeholder="Search..." />
                 <Link to="/profile">
@@ -33,10 +34,11 @@ function Navbar() {
                 <Link to="/">
                 <button
                     className="nav-button logged-in-button"
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.preventDefault();
                         removeToken();
-                    navigate('/');
-                    window.location.reload(); // Refresh the page to update the navbar
+                        navigate('/');
+                        window.location.reload(); // Refresh the page to update the navbar
                     }}
                 >
                     Log-Out
