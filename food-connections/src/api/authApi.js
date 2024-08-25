@@ -5,8 +5,8 @@ const API_BASE_URL = process.env.AUTH_API_URL || "http://localhost:8000/api";
 export const login = async (data) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/users/login`, data);
-    localStorage.setItem("accessToken", response.access_token);
-    return response;
+    localStorage.setItem("accessToken", response.data.access_token);
+    return response.data;
   } catch (error) {
     if (error.response) {
       // Request made and server responded with a status other than 2xx
@@ -27,7 +27,7 @@ export const login = async (data) => {
 export const register = async (data) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/users`, data);
-    return response;
+    return response.data;
   } catch (error) {
     if (error.response) {
       // Server responded with a status other than 2xx
@@ -55,8 +55,8 @@ export const getCurrentUser = async () => {
       },
     });
 
-    console.log("User data:", response);
-    return response;
+    console.log("User data:", response.data);
+    return response.data;
   } catch (err) {
     // Handle any errors
     console.error("Error fetching user data:", err);
