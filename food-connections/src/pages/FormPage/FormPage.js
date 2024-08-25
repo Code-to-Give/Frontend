@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './FormPage.css';
 import Map from "../../components/Map/Map";
 
-function FormPage() {
+function FormPage({onSubmit}) {
   const [longitude, setLongitude] = useState("");
   const [latitude, setLatitude] = useState("");  
   const [quantity, setQuantity] = useState("");
@@ -18,8 +18,10 @@ function FormPage() {
   };
 
   // Function to handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+
+    console.log("reached here");
 
     // Collect the form data
     const formData = {
@@ -56,6 +58,10 @@ function FormPage() {
     } catch (error) {
       console.error('Error submitting the form:', error);
       alert('An error occurred while submitting the form.');
+    }
+
+    if (onSubmit) {
+      onSubmit();
     }
   };
 
@@ -109,7 +115,7 @@ function FormPage() {
             <Map onLocationSelect={handleLocation}/>
           </div>
         </div>
-        <button className="submit-button" onSubmit={handleSubmit}>Submit</button>
+        <button className="submit-button" onClick={handleSubmit}>Submit</button>
       </div>
     </div>
   );
