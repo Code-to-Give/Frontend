@@ -57,7 +57,7 @@ function SignUpPage() {
       if (role === "Donor") {
         navigate("/donor-approval");
       } else if (role === "Beneficiary" || role === "Volunteer") {
-        navigate("/home");
+        navigate("/login");
       }
     } catch (err) {
       console.error("Registration failed:", err);
@@ -132,9 +132,9 @@ function SignUpPage() {
             {role !== "Volunteer" && (
               <div className="input-group">
                 <label className="details">Company Name:</label>
-                <p className="subtext">
+                {/* <p className="subtext">
                   If you are a volunteer, put your name in "Company Name" and "Name".
-                </p>
+                </p> */}
                 <input
                   type="text"
                   placeholder="Company Name"
