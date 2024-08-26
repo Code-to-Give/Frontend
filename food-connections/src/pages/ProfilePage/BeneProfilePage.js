@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./BeneProfilePage.css";
 import Navbar from "../../components/Navbar/Navbar";
+import { useAuth } from "../../utils/AuthContext";
 
 function BeneProfilePage() {
   const [status, setStatus] = useState("Delivered");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const { user } = useAuth();
+
 
   const toggleStatus = () => {
     setStatus((prevStatus) =>
@@ -37,10 +40,10 @@ function BeneProfilePage() {
             className="profile-logo"
           />
           <div className="profile-info">
-            <h2>ABC Home</h2>
-            <p>Tom</p>
-            <p>Email: abchome@gmail.com</p>
-            <p>Phone: 9123 4567</p>
+            <h2>{JSON.parse(user).company_name ?? "Beneficiary"}</h2>
+            <p>{JSON.parse(user).name ?? "Beneficiary"}</p>
+            <p>Email: {JSON.parse(user).email ?? "Beneficiary"}</p>
+            <p>{JSON.parse(user).phone_number ?? "Beneficiary"}</p>
             {/* <p>Location: Jurong East</p> */}
             <button className="edit-profile-button">Edit Profile</button>
           </div>
@@ -48,7 +51,7 @@ function BeneProfilePage() {
 
         <div className="profile-main">
           <div className="header-bar">
-            <h1>Welcome, ABC Home</h1>
+            <h1>Welcome, {JSON.parse(user).company_name ?? "Beneficiary"}</h1>
             <Link to="/home" className="back-button">
               Back to Home
             </Link>

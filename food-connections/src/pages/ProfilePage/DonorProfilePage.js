@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './DonorProfilePage.css';
 import Navbar from '../../components/Navbar/Navbar';
+import { useAuth } from '../../utils/AuthContext';
 
 function DonorProfilePage() {
     // state for the profile details (currently default values - can see if wanna connect to DB backend params)
@@ -10,6 +11,7 @@ function DonorProfilePage() {
     const [email] = useState('mbs@gmail.com');
     const [phone] = useState('123-456-7890');
     const [location, setLocation] = useState('Marina Bay');
+    const { user } = useAuth();
 
     // temp state for editing location
     const [tempLocation, setTempLocation] = useState(location);
@@ -57,17 +59,17 @@ function DonorProfilePage() {
             <div className="profile-sidebar">
                 <img src="path_to_logo_or_profile_picture" alt="Company Logo" className="profile-logo" />
                 <div className="profile-info">
-                    <h2>{companyName}</h2>
-                    <p>{ceoName}</p>
-                    <p>Email: {email}</p>
-                    <p>Phone: {phone}</p>
+                    <h2>{JSON.parse(user).company_name ?? "Beneficiary"}</h2>
+                    <p>{JSON.parse(user).name ?? "Beneficiary"}</p>
+                    <p>Email: {JSON.parse(user).email ?? "Beneficiary"}</p>
+                    <p>{JSON.parse(user).company_name ?? "Beneficiary"}</p>
                     {/* <p>Location: {location}</p> */}
                 </div>
                 <button className="edit-profile-button" onClick={handleEditLocationOpen}>Edit Location</button>
             </div>
             <div className="profile-main">
                 <div className="header-bar">
-                    <h1>Welcome, {companyName}</h1>
+                    <h1>Welcome, {JSON.parse(user).company_name ?? "Beneficiary"}</h1>
                     <Link to="/home" className="back-button">Back to Home</Link>
                 </div>
                 <div className="dashboard">
