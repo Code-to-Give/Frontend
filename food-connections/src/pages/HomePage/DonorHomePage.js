@@ -66,6 +66,16 @@ function DonorHomePage() {
     toggleFormPopup();
   };
 
+  let companyName = "Donor";
+  try {
+    const parsedUser = JSON.parse(user);
+    if (parsedUser && parsedUser.company_name) {
+      companyName = parsedUser.company_name;
+    }
+  } catch (error) {
+    console.error("Failed to parse user JSON:", error);
+  }
+
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -75,7 +85,7 @@ function DonorHomePage() {
       <Navbar />
       <div className="dashboard-container">
         <header className="dashboard-header">
-          <h1>Hello there, {JSON.parse(user).company_name ?? "Donor"}</h1>
+          <h1>Hello there, {companyName}</h1>
           <button className="open-form-button" onClick={toggleFormPopup}>
             Food to donate?
           </button>

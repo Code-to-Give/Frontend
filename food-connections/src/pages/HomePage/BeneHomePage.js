@@ -64,12 +64,22 @@ function BeneHomePage() {
     return <div>Error: {error}</div>;
   }
 
+  let companyName = "Beneficiary";
+  try {
+    const parsedUser = JSON.parse(user);
+    if (parsedUser && parsedUser.company_name) {
+      companyName = parsedUser.company_name;
+    }
+  } catch (error) {
+    console.error("Failed to parse user JSON:", error);
+  }
+
   return (
     <div>
       <Navbar />
       <div className="dashboard-container">
         <header className="dashboard-header">
-          <h1>Hello there, {JSON.parse(user).company_name ?? "Beneficiary"}</h1>
+          <h1>Hello there, {companyName}</h1>
         </header>
         <div className="dashboard-content">
           <div className="charts">
