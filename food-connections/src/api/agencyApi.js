@@ -23,11 +23,15 @@ export const getAgencyInformation = async () => {
       console.log("Agency not found. Creating new agency...");
 
       try {
-        const createResponse = await axios.post(`${API_BASE_URL}/agencies`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const createResponse = await axios.post(
+          `${API_BASE_URL}/agencies`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
 
         return createResponse.data;
       } catch (createError) {

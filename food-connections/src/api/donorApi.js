@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_BASE_URL = process.env.ALGO_API_URL || "http://localhost:8001/api";
 
-export const getDonorInformation = async (data) => {
+export const getDonorInformation = async () => {
   const accessToken = localStorage.getItem("accessToken");
 
   if (!accessToken) {
@@ -25,7 +25,7 @@ export const getDonorInformation = async (data) => {
       try {
         const createResponse = await axios.post(
           `${API_BASE_URL}/donors`,
-          data,
+          {},
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
