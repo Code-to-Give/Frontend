@@ -11,7 +11,8 @@ function DonorProfilePage() {
     const [email] = useState('mbs@gmail.com');
     const [phone] = useState('123-456-7890');
     const [location, setLocation] = useState('Marina Bay');
-    const { user } = useAuth();
+    const { user } = useAuth(); 
+  const parsedUser = user ? JSON.parse(user) : {}; // Parsing user data
 
     // temp state for editing location
     const [tempLocation, setTempLocation] = useState(location);
@@ -52,6 +53,19 @@ function DonorProfilePage() {
         handleEditLocationClose();
     };
 
+    const getHomeLink = () => {
+        switch (parsedUser.role) {
+          case "Donor":
+            return "/donor-home";
+          case "Beneficiary":
+            return "/bene-home";
+          case "Volunteer":
+            return "/volunteer-home";
+          default:
+            return "/home";
+        }
+      };
+
     return (
       <div>
         <Navbar />
@@ -70,7 +84,9 @@ function DonorProfilePage() {
             <div className="profile-main">
                 <div className="header-bar">
                     <h1>Welcome, {JSON.parse(user).company_name ?? "Beneficiary"}</h1>
-                    <Link to="/home" className="back-button">Back to Home</Link>
+                    <Link to={getHomeLink()} className="back-button">
+              Back to Home
+            </Link>
                 </div>
                 <div className="dashboard">
                     <div className="dashboard-section">
@@ -78,7 +94,7 @@ function DonorProfilePage() {
                         <button onClick={handlePopupOpen} className="modal-button">
                             View Donation Details
                         </button>
-                        <p>Beneficiary: ABC Home</p>
+                        <p>Beneficiary: Apex Harmony</p>
                         <button onClick={toggleStatus} className={buttonClass}>
                             {status}
                         </button>

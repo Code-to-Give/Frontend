@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./BeneProfilePage.css";
 import Navbar from "../../components/Navbar/Navbar";
 import { useAuth } from "../../utils/AuthContext";
@@ -7,8 +7,9 @@ import { useAuth } from "../../utils/AuthContext";
 function BeneProfilePage() {
   const [status, setStatus] = useState("Delivered");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const { user } = useAuth();
-
+  const { user } = useAuth(); 
+  const parsedUser = user ? JSON.parse(user) : {}; // Parsing user data
+  const navigate = useNavigate();
 
   const toggleStatus = () => {
     setStatus((prevStatus) =>
@@ -29,6 +30,23 @@ function BeneProfilePage() {
     setIsPopupOpen(false);
   };
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
+  const getHomeLink = () => {
+    switch (parsedUser.role) {
+      case "Donor":
+        return "/donor-home";
+      case "Beneficiary":
+        return "/bene-home";
+      case "Volunteer":
+        return "/volunteer-home";
+      default:
+        return "/home";
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -40,26 +58,27 @@ function BeneProfilePage() {
             className="profile-logo"
           />
           <div className="profile-info">
-            <h2>{JSON.parse(user).company_name ?? "Beneficiary"}</h2>
-            <p>{JSON.parse(user).name ?? "Beneficiary"}</p>
-            <p>Email: {JSON.parse(user).email ?? "Beneficiary"}</p>
-            <p>{JSON.parse(user).phone_number ?? "Beneficiary"}</p>
-            {/* <p>Location: Jurong East</p> */}
+            <h2>{parsedUser.company_name ?? "Beneficiary"}</h2>
+            <p>{parsedUser.name ?? "Beneficiary"}</p>
+            <p>Email: {parsedUser.email ?? "Beneficiary"}</p>
+            <p>{parsedUser.phone_number ?? "Beneficiary"}</p>
             <button className="edit-profile-button">Edit Profile</button>
           </div>
         </div>
 
         <div className="profile-main">
           <div className="header-bar">
-            <h1>Welcome, {JSON.parse(user).company_name ?? "Beneficiary"}</h1>
-            <Link to="/home" className="back-button">
+            <h1>Welcome, {parsedUser.company_name ?? "Beneficiary"}</h1>
+            <Link to={getHomeLink()} className="back-button">
               Back to Home
             </Link>
           </div>
           <div className="dashboard">
             <div className="dashboard-section">
               <h2>History</h2>
-              <button onClick={handlePopupOpen} className="modal-button">View Donation Details</button>
+              <button onClick={handlePopupOpen} className="modal-button">
+                View Donation Details
+              </button>
               <p>Donor: MBS</p>
               <button onClick={toggleStatus} className={buttonClass}>
                 {status}
